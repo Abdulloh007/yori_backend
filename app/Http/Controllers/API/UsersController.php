@@ -62,11 +62,16 @@ class UsersController extends Controller
             $input['tarif_expire'] = date('Y-m-d',strtotime($input['tarif_expire']));  
         }
 
-        $User = User::create($input);
+        $user = User::where('phone_number', $input['phone_number'])->first();
+        
+        if(is_null($user)){
+            $User = User::create($input);
+            $User->bearer = $User->createToken('Yori')->accessToken;
+            $User->save();  
+        }else{
+            return response()->json(['data'=>[ 'status' => 'Duplicate Phone Number !' ]], 403);
+        }
 
-        $User->bearer = $User->createToken('Yori')->accessToken;
-
-        $User->save();  
 
         return response()->json(['data'=>$User],200);
     }
