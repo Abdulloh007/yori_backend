@@ -19,6 +19,7 @@ class Subcategories extends Model
     protected $fillable = [
           'name',
           'categories_id',
+          'tarif',
     ];
 
     /**

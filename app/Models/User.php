@@ -35,7 +35,7 @@ class User extends Authenticatable
         'tarif',
         'tarif_expire',
         'sex',
-        'bearer'
+        'bearer',
   ];
 
     /**
@@ -44,6 +44,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'password'
     ];
 
     /**

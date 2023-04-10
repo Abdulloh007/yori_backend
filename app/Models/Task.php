@@ -30,6 +30,8 @@ class Task extends Model
           'category',
           'subcategory',
           'private_description',
+          'customer',
+          'perfomer',
     ];
 
     protected $table="task";

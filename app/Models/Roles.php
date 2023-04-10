@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class Review extends Model
+class Roles extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 

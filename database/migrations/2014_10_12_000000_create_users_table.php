@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('rating')->default(0);
             $table->text('bio')->nullable();
             $table->text('video_about')->nullable();
-            $table->string('status')->default(0);
+            $table->integer('status')->default(0);
             $table->string('role', 20)->default(1);
             $table->decimal('balance',20,2)->nullable();
             $table->string('email')->nullable();

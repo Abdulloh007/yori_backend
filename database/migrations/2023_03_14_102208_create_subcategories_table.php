@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('categories_id');
+            $table->integer('tarif');
             $table->timestamps();
         });
     }

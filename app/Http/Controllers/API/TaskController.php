@@ -100,6 +100,8 @@ use Validator;
                 'views' => 'nullable',
                 'status' => 'nullable',
                 'private_description' => 'nullable',
+                'customer' => 'nullable',
+                'performer' => 'nullable',
             ]);
 
             if ($validator->fails()) {

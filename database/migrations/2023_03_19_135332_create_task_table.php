@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('category');
             $table->integer('subcategory');
             $table->text('private_description')->nullable();
+            $table->integer('customer');
+            $table->integer('perfomer')->nullable();
             $table->timestamps();
 
         });
