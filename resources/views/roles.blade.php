@@ -34,7 +34,7 @@
                     </td>
                   </tr>
                     @empty
-                        <tr><td><h6 class="mb-0 text-sm px-3">Subcategories Not Found</h6><td></tr>
+                        <tr><td><h6 class="mb-0 text-sm px-3">Roles Not Found</h6><td></tr>
                     @endforelse
                 </tbody>
               </table>

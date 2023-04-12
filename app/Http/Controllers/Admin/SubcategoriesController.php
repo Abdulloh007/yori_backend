@@ -35,7 +35,7 @@ class SubcategoriesController extends Controller
     {
         $categories = Categories::all();
         $tarif = Tarif::all();
-        return view('subcategories-create',['categories'=>$categories, 'tarif'=>$tarif]);
+        return view('index',['page'=>'subcategories-create','categories'=>$categories, 'tarif'=>$tarif]);
     }
 
     /**
@@ -76,7 +76,7 @@ class SubcategoriesController extends Controller
         $category = Subcategories::find($subcategories);
         $categories = Categories::all();
         $tarif = Tarif::all();
-        return view('subcategories-edit',['subcategory'=>$category,'categories'=>$categories,'tarif'=>$tarif]);
+        return view('index',['page'=>'subcategories-edit','subcategory'=>$category,'categories'=>$categories,'tarif'=>$tarif]);
     }
 
     /**

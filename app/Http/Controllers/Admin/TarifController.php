@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Roles;
+use App\Models\Tarif;
 use Illuminate\Http\Request;
 use Validator;
 
-class RolesController extends Controller
+
+class TarifController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $roles = Roles::all();
+        $tarif = Tarif::all();
         
-        return view('index',['page'=>'roles','roles'=>$roles]);
+        return view('index',['page'=>'tarif','tarif'=>$tarif]);
     }
 
     /**
@@ -24,7 +25,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('index',['page'=>'roles-create']);
+        return view('index',['page'=>'tarif-create']);
     }
 
     /**
@@ -35,23 +36,24 @@ class RolesController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'descr' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('roles');
+            return redirect()->route('tarif');
         }
 
-        $roles = Roles::create($input);
+        $tarif = Tarif::create($input);
 
-        return redirect()->route('roles');
+        return redirect()->route('tarif');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Roles $roles)
+    public function show(Tarif $tariff)
     {
         //
     }
@@ -59,54 +61,55 @@ class RolesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $role)
+    public function edit(int $tariff)
     {
-        $roles = Roles::find($role);
+        $tarif = Tarif::find($tariff);
 
-        return view('index',['page'=>'roles-edit','roles'=>$roles]);
+        return view('index',['page'=>'tarif-edit','tarif'=>$tarif]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $role)
+    public function update(Request $request, int $tariff)
     {
          // update prices if exists by id
-         $roles = Roles::find($role);
+         $tarif = Tarif::find($tariff);
 
-         if(!$roles)
+         if(!$tarif)
              return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
          else{
              $input = $request->all();
  
              $validator = Validator::make($input, [
-                 'title' => 'required',
-                 'descr' => 'required',
+                 'name' => 'required',
+                 'description' => 'required',
+                 'price' => 'required',
              ]);
  
              if ($validator->fails()) {
-                   return redirect()->route('roles');
+                   return redirect()->route('tarif');
              }
  
              
-             $roles->update($input);
+             $tarif->update($input);
  
-            return redirect()->route('roles');
+            return redirect()->route('tarif');
          }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $role)
+    public function destroy(int $tariff)
     {
-        $roles = Roles::find($role);
+        $tarif = Tarif::find($tariff);
 
-        if(!$roles)
-            return redirect()->route('roles');
+        if(!$tarif)
+            return redirect()->route('tarif');
          else{
-             $roles->delete();
-             return redirect()->route('roles');
+             $tarif->delete();
+             return redirect()->route('tarif');
         }
     }
 }

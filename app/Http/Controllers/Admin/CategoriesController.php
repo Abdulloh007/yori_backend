@@ -25,7 +25,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories-create');
+        return view('index',['page'=>'categories-create']);
     }
 
     /**
@@ -65,7 +65,7 @@ class CategoriesController extends Controller
 
         $category = Categories::find($categories);
 
-        return view('categories-edit',['category'=>$category]);
+        return view('index',['page'=>'categories-edit','category'=>$category]);
 
     }
 
