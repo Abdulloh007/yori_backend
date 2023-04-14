@@ -36,15 +36,18 @@ Route::post('user-auth', [UsersController::class, 'auth']);
 
 Route::get('accessdenied', function(){return response()->json(['data'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
 Route::get('hasnttarif', function(){return response()->json(['data'=>['status' => 'Your Tarif Expired ! ']],403);})->name('tarif_expire');
+Route::resource('categories', CategoriesController::class);
+Route::resource('subcategories', SubcategoriesController::class);
+Route::resource('task', TaskController::class);
 
 Route::middleware('auth:api')->group( function () {
 
     Route::middleware([AccessControl::class])->group(function () {
         
-        Route::resource('categories', CategoriesController::class);
+        
         Route::post('categories/{id}', [CategoriesController::class,'update']);
         
-        Route::resource('subcategories', SubcategoriesController::class);
+        
         Route::post('subcategories/{id}', [SubcategoriesController::class,'update']);
         Route::get('subcategories/category/{id}', [SubcategoriesController::class,'showbycategories']);
 
@@ -56,7 +59,7 @@ Route::middleware('auth:api')->group( function () {
         Route::get('review/task/{id}', [ReviewController::class,'showbytask']);
         Route::get('review/user/{id}', [ReviewController::class,'showbyuser']);
 
-        Route::resource('task', TaskController::class);
+        
         Route::post('task/{id}', [TaskController::class,'update']);
         Route::get('tasks/{category}/{subcategory?}', [TaskController::class,'showbycategories']);
     
