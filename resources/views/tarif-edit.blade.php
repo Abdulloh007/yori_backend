@@ -2,7 +2,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column">
               <div class="card card-plain mt-3">
                 <div class="card-body">
-                  <form role="form" method="post" action="{{ route('tarif.update',$tarif->id) }}">
+                  <form role="form" method="post" action="{{ route('tarif-update',$tarif->id) }}">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                     <label>Title</label>
                     <div class="mb-3">

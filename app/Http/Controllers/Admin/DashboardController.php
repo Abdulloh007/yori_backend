@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Hash;
 use Validator;
 use App\Models\User;
+use App\Models\Permission;
 use App\Models\Roles;
 
 class DashboardController extends Controller
@@ -47,15 +48,18 @@ class DashboardController extends Controller
         ]);
 
         if ($validator->fails()) {
-                return redirect()->route('404');
+                return redirect()->route('404');    
         }
-        
 
         $user = User::where('phone_number',$input['phone_number'])->first();
 
         if(!is_null($user)){
             if(Hash::check($input['password'], $user->password)){
-                if($user->role=='5'){
+                
+                $permission = Permission::where('route','admin')->first();
+                $get = $permission->get;
+                $array = explode(',',$get);
+                if(in_array($user->role,$array)){
                     $request->session()->put('user',$user);
                     return redirect()->route('home');
                 }else{

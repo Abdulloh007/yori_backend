@@ -26,8 +26,9 @@ class AccessControl
         $user = User::where('bearer',$token)->first();
 
         if(!is_array($route)){
+            $router = $route;
             $route = [];
-            $route[0] = $route;
+            $route[0] = $router;
         }else{
             $route = explode('.',$route);
         }

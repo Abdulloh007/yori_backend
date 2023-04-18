@@ -2,33 +2,52 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header pb-0">
-            <h6>Categories Table</h6>
+            <h6>Users Table</h6>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
               <table class="table align-items-center justify-content-center mb-0">
-                <a href="{{ route('categories-create') }}" class="text-white font-weight-bold text-xs mx-3 px-3 py-1" style="background: var(--bs-success);border-radius: 5px;">Add</a>
+                <a href="{{ route('users-create') }}" class="text-white font-weight-bold text-xs mx-3 px-3 py-1" style="background: var(--bs-success);border-radius: 5px;">Add</a>
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Surname</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">city</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">rating</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @forelse ($categories as $category)
+                    @forelse ($users as $user)
                     <tr>
                     <td>
                       <div class="d-flex px-3">
-                          <h6 class="mb-0 text-sm">{{ $category->name }}</h6>
+                          <h6 class="mb-0 text-sm">{{ $user->name }}</h6>
                       </div>
                     </td>
                     <td>
-                        <a href="{{ route('categories-edit',$category->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
-                        <a href="{{ route('categories-delete',$category->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
+                      <div class="d-flex px-3">
+                          <h6 class="mb-0 text-sm">{{ $user->surname }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex px-3">
+                          <h6 class="mb-0 text-sm">{{ $user->city }}</h6>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="d-flex px-3">
+                          <h6 class="mb-0 text-sm">{{ $user->rating }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                        <a href="{{ route('users-edit',$user->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
+                        <a href="{{ route('users-delete',$user->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
                     </td>
                   </tr>
                     @empty
-                        <tr><td><h6 class="mb-0 text-sm px-3">Categories Not Found</h6><td></tr>
+                        <tr><td><h6 class="mb-0 text-sm px-3">Users Not Found</h6><td></tr>
                     @endforelse
                 </tbody>
               </table>

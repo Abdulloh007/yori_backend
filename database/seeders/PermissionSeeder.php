@@ -75,6 +75,211 @@ class PermissionSeeder extends Seeder
             'post' => '1,5',
             'delete' => '1,5',
         ]);
+
+
+        // ADMIN 
+
+
+        DB::table('permission')->insert([
+            'route' => 'admin',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'index',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+
+        
+        DB::table('permission')->insert([
+            'route' => 'categories-create',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'categories-store',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'categories-update',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'categories-edit',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'categories-delete',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+
+
+        DB::table('permission')->insert([
+            'route' => 'subcategories-create',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'subcategories-store',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'subcategories-update',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'subcategories-edit',
+            'get' => '4,5',
+            'post' => '',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'subcategories-delete',
+            'get' => '5',
+            'post' => '',
+            'delete' => '',
+        ]);
+
+
+        DB::table('permission')->insert([
+            'route' => 'tarif-create',
+            'get' => '4,5',
+            'post' => '',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'tarif-store',
+            'get' => '',
+            'post' => '4,5',
+            'delete' => '',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'tarif-update',
+            'get' => '',
+            'post' => '4,5',
+            'delete' => '',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'tarif-edit',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'tarif-delete',
+            'get' => '5',
+            'post' => '',
+            'delete' => '',
+        ]);
+
+
+        DB::table('permission')->insert([
+            'route' => 'roles-create',
+            'get' => '4,5',
+            'post' => '',
+            'delete' => '',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'roles-store',
+            'get' => '',
+            'post' => '4,5',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'roles-update',
+            'get' => '',
+            'post' => '4,5',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'roles-edit',
+            'get' => '4,5',
+            'post' => '',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'roles-delete',
+            'get' => '5',
+            'post' => '',
+            'delete' => '',
+        ]);
+
+
+        DB::table('permission')->insert([
+            'route' => 'users-create',
+            'get' => '4,5',
+            'post' => '',
+            'delete' => '',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'users-store',
+            'get' => '',
+            'post' => '4,5',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'users-update',
+            'get' => '',
+            'post' => '4,5',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'users-edit',
+            'get' => '4,5',
+            'post' => '',
+            'delete' => '',
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'users-delete',
+            'get' => '5',
+            'post' => '',
+            'delete' => '',
+        ]);
        
+        DB::table('permission')->insert([
+            'route' => 'users-show',
+            'get' => '5',
+            'post' => '',
+            'delete' => '',
+        ]);
+
     }
 }

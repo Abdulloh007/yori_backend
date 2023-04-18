@@ -7,7 +7,7 @@
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
               <table class="table align-items-center justify-content-center mb-0">
-                <a href="{{ route('tarif.create') }}" class="text-white font-weight-bold text-xs mx-3 px-3 py-1" style="background: var(--bs-success);border-radius: 5px;">Add</a>
+                <a href="{{ route('tarif-create') }}" class="text-white font-weight-bold text-xs mx-3 px-3 py-1" style="background: var(--bs-success);border-radius: 5px;">Add</a>
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
@@ -35,8 +35,8 @@
                       </div>
                     </td>
                     <td>
-                        <a href="{{ route('tarif.edit',$tariff->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
-                        <a href="{{ route('tarif.delete',$tariff->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
+                        <a href="{{ route('tarif-edit',$tariff->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
+                        <a href="{{ route('tarif-delete',$tariff->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
                     </td>
                   </tr>
                     @empty
