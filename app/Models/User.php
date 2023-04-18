@@ -33,7 +33,6 @@ class User extends Authenticatable
         'phone_number',
         'password',
         'tarif',
-        'tarif_expire',
         'sex',
         'bearer',
   ];

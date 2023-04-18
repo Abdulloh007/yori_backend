@@ -147,4 +147,15 @@ use Validator;
              return response()->json(['data' => $task], 200);
     }
 
+    public function showbycustomer(int $customer)
+    {
+        
+        $task = Task::where('customer',$customer)->get();
+            
+        if(!$task)
+             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        else
+             return response()->json(['data' => $task], 200);
+    }
+
 }

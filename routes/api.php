@@ -30,9 +30,9 @@ use App\Http\Controllers\API\RegisterController;
 Route::post('user', [UsersController::class, 'store']);
 Route::post('user-auth', [UsersController::class, 'auth']);
 
-// Route::get('home/{data}', function($data){
-//     echo $data;
-//  })->name('home');
+Route::get('view-data/{data}', function($data){
+    echo $data;
+ })->name('view-data');
 
 Route::get('accessdenied', function(){return response()->json(['data'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
 Route::get('hasnttarif', function(){return response()->json(['data'=>['status' => 'Your Tarif Expired ! ']],403);})->name('tarif_expire');
@@ -61,10 +61,10 @@ Route::middleware('auth:api')->group( function () {
 
         
         Route::post('task/{id}', [TaskController::class,'update']);
-        Route::get('tasks/{category}/{subcategory?}', [TaskController::class,'showbycategories']);
+        Route::get('task/bycategory/{category}/{subcategory?}', [TaskController::class,'showbycategories']);
+        Route::get('task/bycustomer/{customer}', [TaskController::class,'showbycustomer']);
     
         Route::post('response',[ResponseController::class, 'store'])->middleware([HasTarif::class]);
-
         Route::get('response', [ResponseController::class, 'index']);
         Route::get('response/{id}', [ResponseController::class, 'show']);
         Route::post('response/{id}', [ResponseController::class,'update']);

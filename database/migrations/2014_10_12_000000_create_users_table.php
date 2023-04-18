@@ -28,8 +28,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('phone_number');
             $table->string('password')->nullable();
-            $table->integer('tarif')->nullable();
-            $table->date('tarif_expire')->nullable();
+            $table->json('tarif')->nullable();
             $table->string('sex')->nullable();
             $table->longText('bearer')->nullable();
             $table->timestamps();

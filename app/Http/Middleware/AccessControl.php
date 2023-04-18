@@ -6,6 +6,7 @@ use App\Models\Permission;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Route;
 
 class AccessControl
 {
@@ -19,22 +20,24 @@ class AccessControl
     public function handle(Request $request, Closure $next)
     {
         $token = $request->bearerToken();
-        $route = $request->route()->getName();
+        $route = $request->route()->uri();
         $method = $request->method();
         $response = $next($request);
         
+        $strroute = $route;
+
+        // return redirect()->route('view-data', dd($request->route()->uri()));
+
+
+
+
         $user = User::where('bearer',$token)->first();
 
-        if(!is_array($route)){
-            $router = $route;
-            $route = [];
-            $route[0] = $router;
-        }else{
-            $route = explode('.',$route);
-        }
-
-        $permission = Permission::where('route',$route[0])->first();
+        $route = explode('/', $strroute);
+        $permission = Permission::where('route',$route[1])->first();
        
+        
+
         if ($user && $permission) {
             $role = $user->role;
             switch($method){
