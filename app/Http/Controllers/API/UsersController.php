@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\User as UserAuth;
+use App\Models\UserBearer;
 use Illuminate\Http\Request;
 use Validator;
 use Hash;
@@ -16,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $Users = User::all();
+        $Users = UserBearer::all();
 
         $response=['data'=>$Users];
 
@@ -62,18 +63,21 @@ class UsersController extends Controller
             $input['tarif_expire'] = date('Y-m-d',strtotime($input['tarif_expire']));  
         }
 
-        $user = User::where('phone_number', $input['phone_number'])->first();
+        $user = UserAuth::where('phone_number', $input['phone_number'])->first();
         
         if(is_null($user)){
-            $User = User::create($input);
+            $User = UserAuth::create($input);
             $User->bearer = $User->createToken('Yori')->accessToken;
-            $User->save();  
+            $User->save();
+            $response = [
+                'data' => $User
+            ];
+            return response()->json(['data'=>$response],200);
         }else{
             return response()->json(['data'=>[ 'status' => 'Duplicate Phone Number !' ]], 403);
         }
 
 
-        return response()->json(['data'=>$User],200);
     }
 
     /**
@@ -82,7 +86,7 @@ class UsersController extends Controller
     public function show(int $id)
     {
         //
-        $Users = User::find($id);
+        $Users = UserBearer::find($id);
 
         if(!$Users)
             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
@@ -103,7 +107,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $Users = User::find($id);
+        $Users = UserBearer::find($id);
 
         if(!$Users)
             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
@@ -135,7 +139,7 @@ class UsersController extends Controller
     public function destroy(int $id)
     {
         //
-        $Users = User::find($id);
+        $Users = UserBearer::find($id);
 
         if(!$Users)
             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
@@ -159,7 +163,7 @@ class UsersController extends Controller
         }
         
 
-        $user = User::where('phone_number',$input['phone_number'])->first();
+        $user = UserAuth::where('phone_number',$input['phone_number'])->first();
 
         if(!is_null($user)){
             if(Hash::check($input['password'], $user->password)){

@@ -30,9 +30,9 @@ use App\Http\Controllers\API\RegisterController;
 Route::post('user', [UsersController::class, 'store']);
 Route::post('user-auth', [UsersController::class, 'auth']);
 
-Route::get('view-data/{data}', function($data){
-    echo $data;
- })->name('view-data');
+// Route::get('view-data/{data}', function($data){
+//     echo $data;
+//  })->name('view-data');
 
 Route::get('accessdenied', function(){return response()->json(['data'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
 Route::get('hasnttarif', function(){return response()->json(['data'=>['status' => 'Your Tarif Expired ! ']],403);})->name('tarif_expire');
