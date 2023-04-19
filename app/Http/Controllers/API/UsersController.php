@@ -94,6 +94,20 @@ class UsersController extends Controller
             return response()->json(['data' => $Users], 200);
     }
 
+    // * Display the specified resource.
+
+    public function byrole(int $role)
+    {
+        //
+        $Users = UserBearer::where('role',$role)->get();
+
+        if(!$Users)
+            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        else
+            return response()->json(['data' => $Users], 200);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      */

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->text('video_about')->nullable();
             $table->integer('status')->default(0);
-            $table->string('role', 20)->default(1);
+            $table->integer('role');
             $table->decimal('balance',20,2)->nullable();
             $table->string('email')->nullable();
             $table->date('date_of_birth')->nullable();
