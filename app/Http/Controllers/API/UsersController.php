@@ -140,6 +140,10 @@ class UsersController extends Controller
                 $image_path = $request->file('avatar')->store('users', 'public');
                 $input['avatar'] = $image_path;
             }
+            
+            if(isset($input['password'])){
+                $input['password'] = bcrypt($input['password']);  
+            }
 
             $Users->update($input);
 
