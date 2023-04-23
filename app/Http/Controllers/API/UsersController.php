@@ -107,6 +107,17 @@ class UsersController extends Controller
             return response()->json(['data' => $Users], 200);
     }
 
+    public function byphone(string $phone)
+    {
+        //
+        $Users = UserBearer::where('phone_number',$phone)->get();
+
+        if(!$Users)
+            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        else
+            return response()->json(['data' => $Users], 200);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

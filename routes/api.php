@@ -54,6 +54,7 @@ Route::middleware('auth:api')->group( function () {
         Route::resource('users', UsersController::class);
         Route::post('users/{id}', [UsersController::class,'update']);
         Route::get('users/role/{role}', [UsersController::class,'byrole']);
+        Route::get('users/phone/{phone}', [UsersController::class,'byphone']);
 
         Route::resource('review', ReviewController::class);
         Route::post('review/{id}', [ReviewController::class,'update']);
