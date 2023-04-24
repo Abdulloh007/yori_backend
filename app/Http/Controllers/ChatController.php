@@ -64,6 +64,7 @@ class ChatController extends Controller
                 //$chat->user2_avatar = $user2->avatar == null ? "Not found" : $user2->avatar;
                 $chat->user1_avatar = UserBearer::find($chat->user1)->avatar == null ? "Not found" : UserBearer::find($chat->user1)->avatar;
                 $chat->user2_avatar = UserBearer::find($chat->user2)->avatar == null ? "Not found" : UserBearer::find($chat->user2)->avatar;
+                $chat->collocutor = $user1->id == $user ? $user2->name : $user1->name;
             }else{
                 unset($chats[$key]);
                 continue;
