@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OsonSMSController;
 use App\Http\Middleware\AccessControl;
 use App\Http\Controllers\API\CategoriesController;
@@ -55,7 +57,6 @@ Route::middleware('auth:api')->group( function () {
         Route::resource('users', UsersController::class);
         Route::post('users/{id}', [UsersController::class,'update']);
         Route::get('users/role/{role}', [UsersController::class,'byrole']);
-
         Route::resource('review', ReviewController::class);
         Route::post('review/{id}', [ReviewController::class,'update']);
         Route::get('review/task/{id}', [ReviewController::class,'showbytask']);
@@ -82,6 +83,13 @@ Route::middleware('auth:api')->group( function () {
 
         Route::resource('roles', WorkExamplesController::class);
         Route::post('roles/{id}', [WorkExamplesController::class,'update']);
+
+        Route::get('chat/{user}', [ChatController::class, 'show']);
+        Route::post('chat',[ChatController::class, 'store']);
+
+        Route::get('message/{chat}', [MessageController::class, 'show']);
+        Route::post('message',[MessageController::class, 'store']);
+
     });
 });
 

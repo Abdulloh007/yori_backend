@@ -280,6 +280,20 @@ class PermissionSeeder extends Seeder
             'post' => '',
             'delete' => '',
         ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'chat',
+            'get' => '1',
+            'post' => '1',
+            'delete' => '1',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'message',
+            'get' => '1',
+            'post' => '1',
+            'delete' => '1',
+        ]);
 
     }
 }
