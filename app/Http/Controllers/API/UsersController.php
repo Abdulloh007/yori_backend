@@ -107,16 +107,17 @@ class UsersController extends Controller
             return response()->json(['data' => $Users], 200);
     }
 
-    public function byphone(string $phone)
-    {
-        //
-        $Users = UserBearer::where('phone_number',$phone)->get();
+    // public function byphone(string $phone)
+    // {
+    //     $Users = UserBearer::where('phone_number',$phone)->first();
+    //     $user_id = $Users->id;
+        
 
-        if(!$Users)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
-        else
-            return response()->json(['data' => $Users], 200);
-    }
+    //     if(!$Users)
+    //         return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+    //     else
+    //         return response()->json(['data' => ['id'=>$user_id]], 200);
+    // }
 
 
     /**
@@ -132,13 +133,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $Users = UserBearer::find($id);
-
         if(!$Users)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
-
             $validator = Validator::make($input, [
                 'phone_number' => 'nullable',
             ]);
@@ -159,6 +157,29 @@ class UsersController extends Controller
             $Users->update($input);
 
             return response()->json(['data' => $Users], 200);
+        }
+    }
+
+    public function recover(Request $request)
+    {
+        $input = $request->all();
+        $Users = UserBearer::where('phone_number',$input['phone_number'])->first();
+
+        if(!$Users)
+            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        else{
+
+            $validator = Validator::make($input, [
+                'phone_number' => 'nullable',
+            ]);
+            
+            if(isset($input['password'])){
+                $input['password'] = bcrypt($input['password']);  
+            }
+
+            $Users->update($input);
+
+            return response()->json(['data' => ['status' => 'Пароль успешно обновлён!']], 200);
         }
     }
 
