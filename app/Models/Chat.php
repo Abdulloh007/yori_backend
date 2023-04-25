@@ -17,7 +17,7 @@ class Chat extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user1','user2'
+        'user1','user2', 'status'
     ];
 
     protected $table="chat";
