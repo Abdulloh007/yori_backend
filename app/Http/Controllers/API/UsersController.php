@@ -133,6 +133,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        $Users = UserBearer::find($id);
+        
         if(!$Users)
         return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
         else{
