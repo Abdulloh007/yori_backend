@@ -53,6 +53,7 @@ Route::middleware('auth:api')->group( function () {
         
         Route::post('subcategories/{id}', [SubcategoriesController::class,'update']);
         Route::get('subcategories/category/{id}', [SubcategoriesController::class,'showbycategories']);
+        Route::get('subcategories/tarif/{id}', [SubcategoriesController::class,'showbytarifs']);
 
         Route::resource('users', UsersController::class);
         Route::post('users/{id}', [UsersController::class,'update']);

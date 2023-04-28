@@ -71,7 +71,17 @@ class SubcategoriesController extends Controller
      */
     public function showbycategories(int $id)
     {
-        $subcategories = Subcategories::where('categories_id',$id)->get();
+        $subcategories = Subcategories::where('categories_id', $id)->get();
+
+        if(!$subcategories)
+            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        else
+            return response()->json(['data' => $subcategories], 200);
+    }
+
+    public function showbytarifs(int $id)
+    {
+        $subcategories = Subcategories::where('tarif', $id)->get();
 
         if(!$subcategories)
             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
