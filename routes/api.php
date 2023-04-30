@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CityController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OsonSMSController;
@@ -40,6 +41,7 @@ Route::post('users/phone', [UsersController::class,'recover']);
 Route::get('accessdenied', function(){return response()->json(['data'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
 Route::get('hasnttarif', function(){return response()->json(['data'=>['status' => 'Your Tarif Expired ! ']],403);})->name('tarif_expire');
 Route::resource('categories', CategoriesController::class);
+Route::resource('city', CityController::class);
 Route::resource('subcategories', SubcategoriesController::class);
 Route::resource('task', TaskController::class);
 

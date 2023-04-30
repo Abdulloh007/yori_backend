@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\Roles;
+use App\Models\Tarif;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
@@ -20,7 +23,8 @@ class UsersController extends Controller
         if ($user === null) {
             return redirect()->route('home');
         }
-        $users = User::where('role','<',$user->role);
+
+        $users = User::where('role','<',$user->role)->get();
         
         return view('index',['page'=>'users','users'=>$users]);
 
@@ -45,9 +49,28 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(int $user)
     {
-        //
+        // view users-show return user by id
+
+        $user = User::find($user);
+
+        $city = City::find($user->city);
+        $user->city = $city->name;
+
+        $role = Roles::find($user->role);
+        $user->role = $role->title;
+
+        $tarif = json_decode($user->tarif);
+        $tariffs=[];
+        foreach($tarif as $item){
+            $tarif = Tarif::find($item->tarif);
+            array_push($tariffs,$tarif->name);
+        }
+        $user->tarif = $tariffs;
+
+        return view('index',['page'=>'users-show','user'=>$user]);
+
     }
 
     /**

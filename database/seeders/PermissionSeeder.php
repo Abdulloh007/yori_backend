@@ -356,5 +356,53 @@ class PermissionSeeder extends Seeder
             'status' => 1
         ]);
 
+        DB::table('permission')->insert([
+            'route' => 'city',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'city-create',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'city-store',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'city-update',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'city-edit',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'city-delete',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+
     }
 }
