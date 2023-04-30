@@ -85,6 +85,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
 
         DB::table('permission')->insert([
@@ -92,6 +93,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
 
         
@@ -100,6 +102,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -107,6 +110,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
 
         DB::table('permission')->insert([
@@ -114,6 +118,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -121,6 +126,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -128,6 +134,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
 
 
@@ -136,6 +143,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -143,6 +151,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -150,6 +159,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -157,6 +167,7 @@ class PermissionSeeder extends Seeder
             'get' => '4,5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -164,6 +175,7 @@ class PermissionSeeder extends Seeder
             'get' => '5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
 
 
@@ -172,6 +184,7 @@ class PermissionSeeder extends Seeder
             'get' => '4,5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -179,6 +192,7 @@ class PermissionSeeder extends Seeder
             'get' => '',
             'post' => '4,5',
             'delete' => '',
+            'status' => 1,
         ]);
 
         DB::table('permission')->insert([
@@ -186,6 +200,7 @@ class PermissionSeeder extends Seeder
             'get' => '',
             'post' => '4,5',
             'delete' => '',
+            'status' => 1,
         ]);
 
         DB::table('permission')->insert([
@@ -193,6 +208,7 @@ class PermissionSeeder extends Seeder
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -200,6 +216,7 @@ class PermissionSeeder extends Seeder
             'get' => '5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
 
 
@@ -208,6 +225,7 @@ class PermissionSeeder extends Seeder
             'get' => '4,5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
 
         DB::table('permission')->insert([
@@ -215,6 +233,7 @@ class PermissionSeeder extends Seeder
             'get' => '',
             'post' => '4,5',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -222,6 +241,7 @@ class PermissionSeeder extends Seeder
             'get' => '',
             'post' => '4,5',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -229,6 +249,7 @@ class PermissionSeeder extends Seeder
             'get' => '4,5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -236,6 +257,7 @@ class PermissionSeeder extends Seeder
             'get' => '5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
 
 
@@ -244,6 +266,7 @@ class PermissionSeeder extends Seeder
             'get' => '4,5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
 
         DB::table('permission')->insert([
@@ -251,6 +274,7 @@ class PermissionSeeder extends Seeder
             'get' => '',
             'post' => '4,5',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -258,6 +282,7 @@ class PermissionSeeder extends Seeder
             'get' => '',
             'post' => '4,5',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -265,6 +290,7 @@ class PermissionSeeder extends Seeder
             'get' => '4,5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -272,6 +298,7 @@ class PermissionSeeder extends Seeder
             'get' => '5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
        
         DB::table('permission')->insert([
@@ -279,6 +306,7 @@ class PermissionSeeder extends Seeder
             'get' => '5',
             'post' => '',
             'delete' => '',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -293,6 +321,39 @@ class PermissionSeeder extends Seeder
             'get' => '1',
             'post' => '1',
             'delete' => '1',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'permission',
+            'get' => '5',
+            'post' => '',
+            'delete' => '',
+            'status' => 1
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'permission-edit',
+            'get' => '5',
+            'post' => '',
+            'delete' => '',
+            'status' => 1
+        ]);
+
+        
+        DB::table('permission')->insert([
+            'route' => 'permission-update',
+            'get' => '',
+            'post' => '5',
+            'delete' => '',
+            'status' => 1
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'permission-update-admin',
+            'get' => '',
+            'post' => '5',
+            'delete' => '',
+            'status' => 1
         ]);
 
     }

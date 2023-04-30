@@ -66,6 +66,7 @@ Route::middleware('auth:api')->group( function () {
         Route::post('task/{id}', [TaskController::class,'update']);
         Route::get('task/bycategory/{category}/{subcategory?}', [TaskController::class,'showbycategories']);
         Route::get('task/bycustomer/{customer}', [TaskController::class,'showbycustomer']);
+        Route::get('task/byperfomer/{perfomer}', [TaskController::class,'showbyperfomer']);
     
         Route::post('response',[ResponseController::class, 'store'])->middleware([HasTarif::class]);
         Route::get('response', [ResponseController::class, 'index']);
@@ -94,3 +95,5 @@ Route::middleware('auth:api')->group( function () {
 });
 
     Route::post('send_sms', [ OsonSMSController::class, 'sendsms' ]);
+
+    Route :: any ( '{url}' , function (){ return response()->json(['error'=>'Not found'],404); })-> where ( 'url' , '.*' ); 

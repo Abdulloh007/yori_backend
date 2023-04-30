@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->text('address')->nullable();
+            $table->json('address')->nullable();
             $table->date('date_of_start')->nullable();
             $table->date('deadline')->nullable();
             $table->decimal('budget',30,2)->default(0);

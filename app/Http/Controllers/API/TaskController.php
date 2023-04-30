@@ -158,4 +158,15 @@ use Validator;
              return response()->json(['data' => $task], 200);
     }
 
+    public function showbyperfomer(int $perfomer)
+    {
+        
+        $task = Task::where('perfomer',$perfomer)->get();
+            
+        if(!$task)
+             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        else
+             return response()->json(['data' => $task], 200);
+    }
+
 }

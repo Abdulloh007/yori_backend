@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\TarifController;
@@ -97,6 +98,11 @@ Route::get('/yoriadminpanel/main/users/edit/{id}',[UsersController::class, 'edit
 Route::post('/yoriadminpanel/main/users/update/{id}',[UsersController::class, 'update'])->name('users-update');
 
 Route::get('/yoriadminpanel/main/users/delete/{id}',[UsersController::class, 'destroy'])->name('users-delete');
+
+Route::get('/yoriadminpanel/main/permission/{status?}',[PermissionController::class, 'index'])->name('permission');
+Route::get('/yoriadminpanel/main/permission/edit/{id}',[PermissionController::class, 'edit'])->name('permission-edit');
+Route::post('/yoriadminpanel/main/permission/update/{id}',[PermissionController::class, 'update'])->name('permission-update');
+Route::post('/yoriadminpanel/main/permission/updates/{id}',[PermissionController::class, 'updateAdmin'])->name('permission-update-admin');
 
 
 });
