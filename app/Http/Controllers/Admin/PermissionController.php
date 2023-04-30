@@ -72,54 +72,11 @@ class PermissionController extends Controller
                return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
            else{
                 $input = $request->all();
-
-                $roles = Roles::where('id','<=',2)->get();
-
-                foreach($roles as $role){
-                    $a = $role->title;
-    
-                    if(isset($input[$a]) && $input[$a] == 'on'){
-                        $a = explode(',',$permissions->get);
-                        if(!in_array($role->id,$a)){
-                            array_push($a,$role->id);
-                            $input['get'] = implode(',',$a);
-                        }
-    
-                        $a = explode(',',$permissions->post);
-                        if(!in_array($role->id,$a)){
-                            array_push($a,$role->id);
-                            $input['post'] = implode(',',$a);
-                        }
-    
-                        $a = explode(',',$permissions->delete);
-                        if(!in_array($role->id,$a)){
-                            array_push($a,$role->id);
-                            $input['delete'] = implode(',',$a);
-                        }
-                    }else{
-                        $a = explode(',',$permissions->get);
-                        if(in_array($role->id,$a)){
-                            $key = array_search($role->id,$a);
-                            unset($a[$key]);
-                            $input['get'] = implode(',',$a);
-                        }
-    
-                        $a = explode(',',$permissions->post);
-                        if(in_array($role->id,$a)){
-                            $key = array_search($role->id,$a);
-                            unset($a[$key]);
-                            $input['post'] = implode(',',$a);
-                        }
-    
-                        $a = explode(',',$permissions->delete);
-                        if(in_array($role->id,$a)){
-                            $key = array_search($role->id,$a);
-                            unset($a[$key]);
-                            $input['delete'] = implode(',',$a);
-                        }
-                    }
-                }
                 
+                $input['get'] = implode(',',$input['get']);
+                $input['post'] = implode(',',$input['post']);
+                $input['delete'] = implode(',',$input['delete']);
+
                $permissions->update($input);
   
               return redirect()->route('permission');
@@ -131,7 +88,6 @@ class PermissionController extends Controller
     public function updateAdmin(Request $request, int $permission)
     {
         $permissions = Permission::find($permission);
-
         if(!$permissions)
             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
         else{
@@ -139,46 +95,45 @@ class PermissionController extends Controller
 
             $roles = Roles::where('id','>',2)->get();
 
-            foreach($roles as $role){
-
+            foreach($roles as $role){ // 1
                 if(isset($input[$role->title]) && $input[$role->title] == 'on'){
+                    $a = explode(',',$permissions->get); // [1]
+                    if(!in_array($role->id,$a)){
+                        array_push($a,$role->id); // [1,2]
+                        $permissions->get = implode(',',$a); // 1,2
+                    }
+
+                    $b = explode(',',$permissions->post);
+                    if(!in_array($role->id,$b)){
+                        array_push($b,$role->id);
+                        $permissions->post = implode(',',$b);
+                    }
+
+                    $c = explode(',',$permissions->delete);
+                    if(!in_array($role->id,$c)){
+                        array_push($c,$role->id);
+                        $permissions->delete = implode(',',$c);
+                    }
+                }else{
                     $a = explode(',',$permissions->get);
-                    if(!in_array($role->id,$a)){
-                        array_push($a,$role->id);
-                        $input['get'] = implode(',',$a);
-                    }
-
-                    $a = explode(',',$permissions->post);
-                    if(!in_array($role->id,$a)){
-                        array_push($a,$role->id);
-                        $input['post'] = implode(',',$a);
-                    }
-
-                    $a = explode(',',$permissions->delete);
-                    if(!in_array($role->id,$a)){
-                        array_push($a,$role->id);
-                        $input['delete'] = implode(',',$a);
-                    }
-                }else if (!isset($input[$role->title])){
-                    $a = explode(',',$permissions->get);
                     if(in_array($role->id,$a)){
                         $key = array_search($role->id,$a);
                         unset($a[$key]);
-                        $input['get'] = implode(',',$a);
+                        $permissions->get = implode(',',$a);
                     }
 
-                    $a = explode(',',$permissions->post);
-                    if(in_array($role->id,$a)){
-                        $key = array_search($role->id,$a);
-                        unset($a[$key]);
-                        $input['post'] = implode(',',$a);
+                    $b = explode(',',$permissions->post);
+                    if(in_array($role->id,$b)){
+                        $key = array_search($role->id,$b);
+                        unset($b[$key]);
+                        $permissions->post = implode(',',$b);
                     }
 
-                    $a = explode(',',$permissions->delete);
-                    if(in_array($role->id,$a)){
-                        $key = array_search($role->id,$a);
-                        unset($a[$key]);
-                        $input['delete'] = implode(',',$a);
+                    $c = explode(',',$permissions->delete);
+                    if(in_array($role->id,$c)){
+                        $key = array_search($role->id,$c);
+                        unset($c[$key]);
+                        $permissions->delete = implode(',',$c);
                     }
                 }
             }

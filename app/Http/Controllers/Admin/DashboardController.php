@@ -59,6 +59,8 @@ class DashboardController extends Controller
                 $permission = Permission::where('route','admin')->first();
                 $get = $permission->get;
                 $array = explode(',',$get);
+                // dd($get);
+                // dd(in_array($user->role,$array));
                 if(in_array($user->role,$array)){
                     $request->session()->put('user',$user);
                     return redirect()->route('home');

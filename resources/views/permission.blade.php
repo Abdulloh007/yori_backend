@@ -16,9 +16,7 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Route</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">perfomer</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">customer</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,14 +29,7 @@
                       </div>
                     </td>
                     <td>
-                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                        <input type="checkbox" name="perfomer" id="" {{ in_array(2,explode(',',$permission->get)) ? "checked" : "" }}>
-                    </td>
-                    <td>
-                        <input type="checkbox" name="customer" id="" {{ in_array(1,explode(',',$permission->get)) ? "checked" : "" }}>
-                    </td>
-                    <td>
-                        <input type="submit" class="btn" value="set" name="ok{{ $permission->id }}" id="">
+                        <a href="{{ route('permission-edit',$permission->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
                       </td>
                     </form>
                   </tr>
