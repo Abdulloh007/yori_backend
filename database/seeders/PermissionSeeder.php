@@ -46,6 +46,7 @@ class PermissionSeeder extends Seeder
             'get' => '1,5',
             'post' => '1,5',
             'delete' => '1,5',
+            'status' => 1,
         ]);
         
         DB::table('permission')->insert([
@@ -397,6 +398,94 @@ class PermissionSeeder extends Seeder
         
         DB::table('permission')->insert([
             'route' => 'city-delete',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'task-create',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'task-store',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'task-update',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'task-edit',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'task-delete',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'response-create',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'response-store',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'response-update',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'response-edit',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'response-delete',
+            'get' => '3,4,5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+        
+        DB::table('permission')->insert([
+            'route' => 'task-show',
             'get' => '3,4,5',
             'post' => '5',
             'delete' => '5',

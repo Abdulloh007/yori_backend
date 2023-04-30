@@ -76,9 +76,11 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(int $user)
     {
-        //
+        $user = User::find($user);
+
+        return view('index',['page'=>'users-edit','user'=>$user]);
     }
 
     /**

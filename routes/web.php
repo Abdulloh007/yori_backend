@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ResponseController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\TarifController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Middleware\Admin\AccessControl;
 use Illuminate\Support\Facades\Route;
@@ -130,6 +131,18 @@ Route::post('/yoriadminpanel/main/city/update/{id}',[CityController::class, 'upd
 Route::get('/yoriadminpanel/main/city/delete/{id}',[CityController::class, 'destroy'])->name('city-delete')->middleware(AccessControl::class);
 
 
+
+Route::get('/yoriadminpanel/main/task',[TaskController::class, 'index'])->name('task');
+
+Route::get('/yoriadminpanel/main/task/add',[TaskController::class, 'create'])->name('task-create');
+Route::post('/yoriadminpanel/main/task/store',[TaskController::class, 'store'])->name('task-store');
+
+Route::get('/yoriadminpanel/main/task/show/{id}',[TaskController::class, 'show'])->name('task-show');
+
+Route::get('/yoriadminpanel/main/task/edit/{id}',[TaskController::class, 'edit'])->name('task-edit');
+Route::post('/yoriadminpanel/main/task/update/{id}',[TaskController::class, 'update'])->name('task-update');
+
+Route::get('/yoriadminpanel/main/task/delete/{id}',[TaskController::class, 'destroy'])->name('task-delete')->middleware(AccessControl::class);
 
 });
 

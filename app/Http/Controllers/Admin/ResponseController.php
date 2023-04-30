@@ -7,6 +7,7 @@ use App\Models\Response;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Validator;
 
 class ResponseController extends Controller
 {
@@ -34,7 +35,7 @@ class ResponseController extends Controller
      */
     public function create()
     {
-        //
+        return view('index',['page'=>'response-create']);
     }
 
     /**
@@ -58,7 +59,9 @@ class ResponseController extends Controller
      */
     public function edit(int $response)
     {
-        //
+        $response = Response::find($response);
+
+        return view('index',['page'=>'response-edit','response'=>$response]);
     }
 
     /**
@@ -66,7 +69,28 @@ class ResponseController extends Controller
      */
     public function update(Request $request, int $response)
     {
-        //
+          // update prices if exists by id
+          $response = Response::find($response);
+
+          if(!$response)
+              return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+          else{
+              $input = $request->all();
+  
+              $validator = Validator::make($input, [
+                  'description' => 'required',
+                  'price' => 'required',
+              ]);
+  
+              if ($validator->fails()) {
+                    return redirect()->route('response');
+              }
+  
+              
+              $response->update($input);
+  
+             return redirect()->route('response');
+          }
     }
 
     /**
@@ -74,6 +98,13 @@ class ResponseController extends Controller
      */
     public function destroy(int $response)
     {
-        //
+        $response = Response::find($response);
+
+        if(!$response)
+            return redirect()->route('response');
+         else{
+             $response->delete();
+             return redirect()->route('response');
+        }
     }
 }

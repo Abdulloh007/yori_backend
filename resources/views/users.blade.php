@@ -42,6 +42,7 @@
                       </div>
                     </td>
                     <td>
+                        <a href="{{ route('users-show',$user->id) }}" class="text-primary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">View</a>
                         <a href="{{ route('users-edit',$user->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
                         <a href="{{ route('users-delete',$user->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
                     </td>
