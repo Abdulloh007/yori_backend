@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class ResponseController extends Controller
 {
@@ -21,10 +22,16 @@ class ResponseController extends Controller
         foreach($responses as $response){
             $task = Task::find($response->task);
             $user = User::find($response->user);
-            
-            $response->task_title = $task->title;
-            $response->user_name = $user->name;
 
+            if(!$task)
+                $response->task_title = 'Task don\'t exists';
+            else{
+                $response->task_title = $task->title;
+            }
+            if(!$user){
+                $response->user_name = 'User don\'t exists';
+            }else
+                $response->user_name = $user->name;
         }
         
         return view('index',['page'=>'response','responses'=>$responses]);
@@ -76,19 +83,30 @@ class ResponseController extends Controller
               return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
           else{
               $input = $request->all();
-  
               $validator = Validator::make($input, [
                   'description' => 'required',
                   'price' => 'required',
+                  'status' => 'required',
               ]);
   
               if ($validator->fails()) {
                     return redirect()->route('response');
               }
-  
-              
               $response->update($input);
-  
+
+              // if $input['status'] = 0 add new notification
+                if($input['status'] == 0){
+                    $task = Task::find($response->task);
+                    $title = $task->title;
+                    DB::insert('insert into notifications (message, user_id, status) values (?, ?, ?)', ['Задание: '.$title.', на которое вы откликнулись была закрыта !', $response->user, 0]);
+                }else{
+                    $task = Task::find($response->task);
+                    $title = $task->title;
+                    DB::insert('insert into notifications (message, user_id, status) values (?, ?, ?)', ['Ваш отлик на задание: '.$title.', принят !', $response->user, 0]);
+                }
+              $response->status = $input['status'];
+              $response->save();
+
              return redirect()->route('response');
           }
     }

@@ -312,9 +312,9 @@ class PermissionSeeder extends Seeder
         
         DB::table('permission')->insert([
             'route' => 'chat',
-            'get' => '1',
-            'post' => '1',
-            'delete' => '1',
+            'get' => '5',
+            'post' => '5',
+            'delete' => '5',
         ]);
 
         DB::table('permission')->insert([
@@ -491,6 +491,66 @@ class PermissionSeeder extends Seeder
             'delete' => '5',
             'status' => 1,
         ]);
+
+        
+        DB::table('permission')->insert([
+            'route' => 'chat-show',
+            'get' => '5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        
+        DB::table('permission')->insert([
+            'route' => 'chat-delete',
+            'get' => '5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'message-delete',
+            'get' => '5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        
+        DB::table('permission')->insert([
+            'route' => 'review',
+            'get' => '5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+
+        DB::table('permission')->insert([
+            'route' => 'review-delete',
+            'get' => '5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'notifications',
+            'get' => '1,2,3,4,5',
+            'post' => '4,5',
+            'delete' => '5',
+        ]);
+
+        DB::table('permission')->insert([
+            'route' => 'notification-delete',
+            'get' => '5',
+            'post' => '5',
+            'delete' => '5',
+            'status' => 1,
+        ]);
+
 
 
     }

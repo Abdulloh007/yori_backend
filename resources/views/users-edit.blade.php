@@ -17,18 +17,23 @@
 
           <label>Avatar</label>
           <div class="mb-3">
-            <input type="file" class="form-control" name="avatar" placeholder="File" aria-label="Name" aria-describedby="name-addon" value="{{ $user->avatar }}">
+            <input type="file" class="form-control" name="avatar" placeholder="File" aria-label="Name" aria-describedby="name-addon">
+            <input type="hidden" name="old_avatar" value="{{ $user->avatar }}">
           </div>
 
           <label>Age</label>
           <div class="mb-3">
-            <input type="number" class="form-control" name="age" placeholder="Number" aria-label="Name" aria-describedby="name-addon" value="{{ $user->number }}">
+            <input type="number" class="form-control" name="age" placeholder="Number" aria-label="Name" aria-describedby="name-addon" value="{{ $user->age }}">
           </div>
 
           <label>City</label>
           <div class="mb-3">
             <select name="city" class="form-control" id="">
-                <option value="">Khujand</option>
+              <option selected>Select Role</option>
+              @forelse ($city as $item)
+                  <option value="{{ $item->id }}" {{ $item->id==$user->city ? "selected" : "" }}>{{ $item->name }}</option>
+              @empty
+              @endforelse
             </select>
           </div>
 
@@ -39,7 +44,7 @@
 
           <label>Bio</label>
           <div class="mb-3">
-            <textarea name="bio" id="" cols="30" rows="10" class="form-control" placeholder="Bio"></textarea>
+            <textarea name="bio" id="" cols="30" rows="10" class="form-control" placeholder="Bio">{{ $user->bio }}</textarea>
           </div>
 
           <label>Video About</label>
@@ -54,26 +59,43 @@
 
           <label>Role</label>
           <div class="mb-3">
-            <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->name }}">
+            <select name="role" id="" value="{{ $user->role }}" class="form-control">
+              <option selected>Select Role</option>
+              @forelse ($roles as $item)
+                  <option value="{{ $item->id }}" {{ $item->id==$user->role ? "selected" : "" }}>{{ $item->title }}</option>
+              @empty
+              @endforelse
+            </select>
           </div>
 
-          <label>Balance</label>
+          {{-- <label>Balance</label>
           <div class="mb-3">
-            <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->name }}">
+            <input type="text" class="form-control" name="balance" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->balance }}">
+          </div> --}}
+
+          <label>Number</label>
+          <div class="mb-3">
+            <input type="tel" class="form-control" name="phone_number" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->phone_number }}">
           </div>
 
           <label>Email</label>
           <div class="mb-3">
-            <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->name }}">
+            <input type="text" class="form-control" name="email" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->email }}">
           </div>
 
           <label>Date of birth</label>
           <div class="mb-3">
-            <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->name }}">
+            <input type="date" class="form-control" name="date_of_birth" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $user->date_of_birth }}">
+          </div>
+
+          
+          <label>Sex</label>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="sex" placeholder="Sex" aria-label="SEX" aria-describedby="name-addon" value="{{ $user->sex }}">
           </div>
 
           <div class="text-center">
-            <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Edit subcategory</button>
+            <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Edit user</button>
           </div>
         </form>
       </div>

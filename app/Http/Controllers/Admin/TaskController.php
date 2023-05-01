@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
+use App\Models\Subcategories;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,6 +20,13 @@ class TaskController extends Controller
         // return all tasks
 
         $tasks = Task::all();
+
+        foreach($tasks as $task){
+            $customer = User::find($task->customer);
+            if ($customer) {
+                $task->customer_name = $customer->name;
+            }
+        }
 
         return view('index',['page'=>'task','tasks'=>$tasks]);
         
@@ -73,11 +82,23 @@ class TaskController extends Controller
         $task = Task::find($task);
 
         $customer = User::find($task->customer);
-        $task->customer_name = $customer->name;
+        if ($customer) {
+            $task->customer_name = $customer->name;
+        }
 
         $perfomer = User::find($task->perfomer);
         if ($perfomer) {
             $task->perfomer_name = $perfomer->name;
+        }
+
+        $category = Categories::find($task->category);
+        if ($category) {
+            $task->category = $category->name;
+        }
+
+        $subcategory = Subcategories::find($task->subcategory);
+        if ($subcategory) {
+            $task->subcategory = $subcategory->name;
         }
         
         return view('index',['page'=>'task-show','task'=>$task]);
@@ -86,24 +107,65 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit(int $task)
     {
-        //
+
+        $task = Task::find($task);
+
+        $category = Categories::all();
+        $subcategory = Subcategories::all();
+
+        return view('index',['page'=>'task-edit','task'=>$task, 'category'=>$category, 'subcategory'=>$subcategory]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, int $task)
     {
-        //
+        $task = Task::find($task);
+
+        if(!$task)
+           return redirect()->route('task');
+        else{
+            $input = $request->all();
+
+            $validator = Validator::make($input, [
+                'title' => 'required',
+                'description' => 'required',
+                'date_of_start' => 'required',
+                'deadline' => 'required',
+                'private_description' => 'required',
+                'budget' => 'required',
+                'price' => 'required',
+                'payment_type' => 'required',
+                'category' => 'required',
+                'subcategory' => 'required',
+            ]);
+
+              if ($validator->fails()) {
+                   return redirect()->route('task');
+                  //dd($validator->errors());
+              }
+            
+            $task->update($input);
+
+           return redirect()->route('task');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(int $task)
     {
-        //
+        $task = Task::find($task);
+
+        if(!$task)
+            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        else{
+            $task->delete();
+            return redirect()->route('task');
+        }
     }
 }

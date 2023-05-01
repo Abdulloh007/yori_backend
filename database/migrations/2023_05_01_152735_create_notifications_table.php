@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('response', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->decimal('price',30,2)->nullable();
-            $table->text('description')->nullable();
-            $table->integer('task');
-            $table->integer('user');
-            $table->integer('status')->nullable();
+            $table->string('message');
+            $table->integer('user_id');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('response');
+        Schema::dropIfExists('notifications');
     }
 };

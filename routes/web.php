@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ResponseController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\TarifController;
@@ -143,6 +146,28 @@ Route::get('/yoriadminpanel/main/task/edit/{id}',[TaskController::class, 'edit']
 Route::post('/yoriadminpanel/main/task/update/{id}',[TaskController::class, 'update'])->name('task-update');
 
 Route::get('/yoriadminpanel/main/task/delete/{id}',[TaskController::class, 'destroy'])->name('task-delete')->middleware(AccessControl::class);
+
+Route::get('/yoriadminpanel/main/users/show/{id}/{admin?}',[UsersController::class, 'show'])->name('profile');
+
+
+
+Route::get('/yoriadminpanel/main/chat',[ChatController::class, 'index'])->name('chat');
+
+Route::get('/yoriadminpanel/main/chat/show/{id}',[ChatController::class, 'show'])->name('chat-show');
+
+Route::get('/yoriadminpanel/main/chat/delete/{id}',[ChatController::class, 'destroy'])->name('chat-delete')->middleware(AccessControl::class);
+
+Route::get('/yoriadminpanel/main/message/delete/{id}',[ChatController::class, 'message_destroy'])->name('message-delete')->middleware(AccessControl::class);
+
+Route::get('/yoriadminpanel/main/review',[ReviewController::class, 'index'])->name('review');
+
+Route::get('/yoriadminpanel/main/review/delete/{id}',[ReviewController::class, 'destroy'])->name('review-delete');
+
+
+Route::get('/yoriadminpanel/main/notification',[NotificationController::class, 'index'])->name('notifications');
+Route::get('/yoriadminpanel/main/notification/delete/{id}',[NotificationController::class, 'destroy'])->name('notification-delete');
+
+
 
 });
 

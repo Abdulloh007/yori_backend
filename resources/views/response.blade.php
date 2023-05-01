@@ -13,6 +13,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
@@ -37,6 +38,11 @@
                     <td>
                       <div class="d-flex px-3">
                           <h6 class="mb-0 text-sm"><a href="{{ route('users-show',$response->user)}}" target="blank">{{ $response->user_name }}</a></h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex px-3">
+                          <h6 class="mb-0 text-sm">{{ $response->status }}</h6>
                       </div>
                     </td>
                     <td>

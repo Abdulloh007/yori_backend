@@ -11,7 +11,7 @@
               </div>
               <div class="d-flex w-80">
                 <div class="w-40">
-                  <p>{{ $user->name.$user->surname }}</p>
+                  <p>{{ $user->name." ".$user->surname }}</p>
                   <p>{{ $user->age }}</p>
                   <p>{{ $user->sex }}</p>
                   <p>{{ $user->phone_number }}</p>
@@ -22,7 +22,6 @@
                   <p>{{ $user->city }}</p>
                   <p>{{ $user->role }}</p>
                   <p>{{ $user->balance }}</p>
-                  <p>{{ $user->email }}</p>
                 </div>
               </div>
             </div>
@@ -46,7 +45,16 @@
               <p>Video About:</p>
               <a href="{{ $user->video_about}}" class="text-primary" target="blank">{{ $user->video_about }}</a>              
             </div>
-            
+            <div>
+              <a href="{{ route('users-edit',$user->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
+              @php
+                  $user = Session::get('user');
+                  $role = $user->role;
+              @endphp
+                @if (!$role>2)
+                  <a href="{{ route('users-delete',$user->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
+                @endif
+            </div>
           </div>
         </div>
       </div>

@@ -8,30 +8,33 @@
             <div class="d-flex justify-space-between">
               <div class="d-flex w-80">
                 <div class="w-40">
-                  <p>Title: &nbsp; {{ $task->title }} </p>
-                  <p>Description: &nbsp; {{ $task->description }} </p>
+                  <p><b>Title:</b> &nbsp; {{ $task->title }} </p>
+                  <p><b>Description:</b> &nbsp; {{ $task->description }} </p>
                   @php
-                    $taddress = json_decode($task->address);
+                    if(!is_null($task->address))
+                      $taddress = json_decode($task->address);
+                    else
+                      $taddress = [];
                   @endphp
-                  <p>Address: &nbsp; 
+                  <p><b>Address:</b> &nbsp; 
                     @forelse ($taddress as $item)
                         {{ $item }}
                     @empty
                         Address is null
                     @endforelse  
                   </p>
-                  <p>Date of start: &nbsp; {{ $task->date_of_start }} </p>
-                  <p>Deadline: &nbsp; {{ $task->deadline }} </p>
-                  <p>Budget: &nbsp; {{ $task->budget }} </p>
-                  <p>Payment type: &nbsp; {{ $task->payment_type }} </p>
-                  <p>Price: &nbsp; {{ $task->price }} </p>
-                  <p>Views: &nbsp; {{ $task->views }} </p>
-                  <p>Status: &nbsp; {{ $task->status }} </p>
-                  <p>Category: &nbsp; {{ $task->category }} </p>
-                  <p>Subcategory: &nbsp; {{ $task->subcategory }} </p>
-                  <p>Private Description: &nbsp; {{ $task->private_description }} </p>
-                  <p>Customer: &nbsp; {{ $task->customer }} </p>
-                  <p>Perfomer: &nbsp; {{ $task->perfomer }} </p>
+                  <p><b>Date of start:</b> &nbsp; {{ $task->date_of_start }} </p>
+                  <p><b>Deadline:</b> &nbsp; {{ $task->deadline }} </p>
+                  <p><b>Budget:</b> &nbsp; {{ $task->budget }} </p>
+                  <p><b>Payment type:</b> &nbsp; {{ $task->payment_type }} </p>
+                  <p><b>Price:</b> &nbsp; {{ $task->price }} </p>
+                  <p><b>Views:</b> &nbsp; {{ $task->views }} </p>
+                  <p><b>Status:</b> &nbsp; {{ $task->status }} </p>
+                  <p><b>Category:</b> &nbsp; {{ $task->category }} </p>
+                  <p><b>Subcategory:</b> &nbsp; {{ $task->subcategory }} </p>
+                  <p><b>Private Description:</b> &nbsp; {{ $task->private_description }} </p>
+                  <p><b>Customer:</b> &nbsp; {{ $task->customer_name }} </p>
+                  <p><b>Perfomer:</b> &nbsp; {{ $task->perfomer_name }} </p>
                   
                 </div>
                 
