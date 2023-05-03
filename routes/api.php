@@ -13,6 +13,7 @@ use App\Http\Controllers\API\SubcategoriesController;
 use App\Http\Controllers\API\TarifController;
 use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\WorkExamplesController;
+use App\Http\Controllers\API\NotificationController;
 use App\Http\Middleware\HasTarif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -93,7 +94,9 @@ Route::middleware('auth:api')->group( function () {
 
         Route::get('message/{chat}', [MessageController::class, 'show']);
         Route::post('message',[MessageController::class, 'store']);
-
+        
+        Route::get('notifications/{user}', [NotificationController::class, 'show']);
+        Route::post('notifications', [NotificationController::class, 'store']);
     });
 });
 
