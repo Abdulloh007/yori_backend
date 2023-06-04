@@ -17,11 +17,7 @@
                       $taddress = [];
                   @endphp
                   <p><b>Address:</b> &nbsp; 
-                    @forelse ($taddress as $item)
-                        {{ $item }}
-                    @empty
-                        Address is null
-                    @endforelse  
+                  {{ $taddress->address }}
                   </p>
                   <p><b>Date of start:</b> &nbsp; {{ $task->date_of_start }} </p>
                   <p><b>Deadline:</b> &nbsp; {{ $task->deadline }} </p>
