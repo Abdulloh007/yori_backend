@@ -44,7 +44,7 @@ class RolesController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         $response = Roles::create($input);
@@ -60,7 +60,7 @@ class RolesController extends Controller
         $response = Roles::find($roles);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $response], 200);
     }
@@ -81,7 +81,7 @@ class RolesController extends Controller
         $response = Roles::find($roles);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -91,7 +91,7 @@ class RolesController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             $response->update($input);
@@ -108,7 +108,7 @@ class RolesController extends Controller
         $response = Roles::find($roles);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $response->delete();
             return response()->json(['data'=>['status' => 'Roles deleted !']], 200);

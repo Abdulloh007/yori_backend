@@ -46,7 +46,7 @@ class ReviewController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         $review = Review::create($input);
@@ -62,7 +62,7 @@ class ReviewController extends Controller
         $review = Review::find($id);
 
         if(!$review)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $review], 200);
     }
@@ -75,7 +75,7 @@ class ReviewController extends Controller
         $review = Review::where('task_id',$id)->get();
 
         if(!$review)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $review], 200);
     }
@@ -88,7 +88,7 @@ class ReviewController extends Controller
         $review = Review::where('to',$id)->get();
 
         if(!$review)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $review], 200);
     }
@@ -109,7 +109,7 @@ class ReviewController extends Controller
         $review = Review::find($id);
 
         if(!$review)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -121,7 +121,7 @@ class ReviewController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             $review->update($input);
@@ -138,7 +138,7 @@ class ReviewController extends Controller
         $review = Review::find($id);
 
         if(!$review)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $review->delete();
             return response()->json(['data'=>['status' => 'Review deleted !']], 200);

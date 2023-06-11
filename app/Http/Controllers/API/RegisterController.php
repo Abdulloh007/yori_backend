@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'c_password' => 'required|same:password',
         ]);
         if($validator->fails()){
-            return response()->json($validator->errors(),201);       
+            return response()->json(['error' => $validator->errors()],201);       
         }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);

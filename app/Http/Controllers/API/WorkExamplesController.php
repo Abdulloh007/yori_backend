@@ -44,7 +44,7 @@ class WorkExamplesController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         if( isset($input['image']) && isset($input['user'])) {
@@ -54,7 +54,7 @@ class WorkExamplesController extends Controller
 
         $response = WorkExamples::create($input);
 
-        return response()->json(['data'=>$response],200);
+        return response()->json(['error'=>$response],200);
     }
 
     /**
@@ -65,7 +65,7 @@ class WorkExamplesController extends Controller
         $response = WorkExamples::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $response], 200);
     }
@@ -79,7 +79,7 @@ class WorkExamplesController extends Controller
         $response = WorkExamples::where('user',$id)->get();
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $response], 200);
     }
@@ -100,7 +100,7 @@ class WorkExamplesController extends Controller
         $response = WorkExamples::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -116,7 +116,7 @@ class WorkExamplesController extends Controller
             }    
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             $response->update($input);
@@ -133,7 +133,7 @@ class WorkExamplesController extends Controller
         $response = WorkExamples::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $response->delete();
             return response()->json(['data'=>['status' => 'WorkExample deleted !']], 200);

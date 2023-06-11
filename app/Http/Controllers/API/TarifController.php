@@ -44,7 +44,7 @@ class TarifController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         $response = Tarif::create($input);
@@ -60,7 +60,7 @@ class TarifController extends Controller
         $response = Tarif::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $response], 200);
     }
@@ -81,7 +81,7 @@ class TarifController extends Controller
         $response = Tarif::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -92,7 +92,7 @@ class TarifController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             $response->update($input);
@@ -109,7 +109,7 @@ class TarifController extends Controller
         $response = Tarif::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $response->delete();
             return response()->json(['data'=>['status' => 'Tarif deleted !']], 200);

@@ -12,6 +12,7 @@ use App\Http\Controllers\API\ReviewController;
 use App\Http\Controllers\API\SubcategoriesController;
 use App\Http\Controllers\API\TarifController;
 use App\Http\Controllers\API\TaskController;
+use App\Http\Controllers\API\TransactionsController;
 use App\Http\Controllers\API\WorkExamplesController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Middleware\HasTarif;
@@ -42,9 +43,9 @@ Route::post('users/phone', [UsersController::class,'recover']);
 Route::get('accessdenied', function(){return response()->json(['data'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
 Route::get('hasnttarif', function(){return response()->json(['data'=>['status' => 'Your Tarif Expired ! ']],403);})->name('tarif_expire');
 Route::resource('categories', CategoriesController::class);
-Route::resource('city', CityController::class);
 Route::resource('subcategories', SubcategoriesController::class);
 Route::resource('task', TaskController::class);
+
 
 Route::middleware('auth:api')->group( function () {
 
@@ -97,6 +98,14 @@ Route::middleware('auth:api')->group( function () {
         
         Route::get('notifications/{user}', [NotificationController::class, 'show']);
         Route::post('notifications', [NotificationController::class, 'store']);
+
+        Route::get('transactions', [TransactionsController::class, 'index']);
+        Route::post('transactions', [TransactionsController::class, 'store']);
+        Route::get('transactions/{id}', [TransactionsController::class, 'show']);
+
+        Route::get('cities', [CityController::class, 'index']);
+        Route::post('cities', [CityController::class, 'store']);
+        Route::get('cities/{id}', [CityController::class, 'show']);
     });
 });
 

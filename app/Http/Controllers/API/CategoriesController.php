@@ -18,10 +18,7 @@ class CategoriesController extends Controller
 
         $response=['data'=>$categories];
 
-        if(!$categories->isEmpty())
-            return response()->json($response);
-        else
-            return response()->json(['status'=>'Empty']);
+        return response()->json($response);
 
     }
 
@@ -46,7 +43,7 @@ class CategoriesController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         $category = Categories::create($input);
@@ -64,7 +61,7 @@ class CategoriesController extends Controller
          $categories = Categories::find($id);
 
          if(!$categories)
-             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
          else
              return response()->json(['data' => $categories], 200);
     }
@@ -86,7 +83,7 @@ class CategoriesController extends Controller
         $categories = Categories::find($id);
 
         if(!$categories)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -95,7 +92,7 @@ class CategoriesController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             
@@ -114,7 +111,7 @@ class CategoriesController extends Controller
          $categories = Categories::find($id);
 
          if(!$categories)
-             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
          else{
              $categories->delete();
              return response()->json(['data'=>['status' => 'Category deleted !']], 200);

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('task', function (Blueprint $table) {
             
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('title');
             $table->text('description')->nullable();
             $table->json('address')->nullable();
-            $table->date('date_of_start')->nullable();
-            $table->date('deadline')->nullable();
+            $table->dateTime('date_of_start')->nullable();
+            $table->dateTime('deadline')->nullable();
             $table->decimal('budget',30,2)->default(0);
             $table->integer('payment_type')->nullable();
             $table->decimal('price',40,2)->nullable();

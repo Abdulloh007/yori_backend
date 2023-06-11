@@ -47,7 +47,7 @@ class ResponseController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         $response = Response::create($input);
@@ -63,7 +63,7 @@ class ResponseController extends Controller
         $response = Response::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $response], 200);
     }
@@ -76,7 +76,7 @@ class ResponseController extends Controller
         $response = Response::where('task',$id)->get();
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $response], 200);
     }
@@ -89,7 +89,7 @@ class ResponseController extends Controller
         $response = Response::where('user',$id)->get();
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $response], 200);
     }
@@ -110,7 +110,7 @@ class ResponseController extends Controller
         $response = Response::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -122,7 +122,7 @@ class ResponseController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             $response->update($input);
@@ -139,7 +139,7 @@ class ResponseController extends Controller
         $response = Response::find($id);
 
         if(!$response)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $response->delete();
             return response()->json(['data'=>['status' => 'Response deleted !']], 200);

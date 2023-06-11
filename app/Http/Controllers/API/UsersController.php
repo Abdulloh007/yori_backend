@@ -47,7 +47,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         if( isset($input['avatar']) ) {
@@ -74,7 +74,7 @@ class UsersController extends Controller
             ];
             return response()->json(['data'=>$response],200);
         }else{
-            return response()->json(['data'=>[ 'status' => 'Duplicate Phone Number !' ]], 403);
+            return response()->json(['error'=>[ 'status' => 'Duplicate Phone Number !' ]], 403);
         }
 
 
@@ -89,7 +89,7 @@ class UsersController extends Controller
         $Users = UserBearer::find($id);
 
         if(!$Users)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $Users], 200);
     }
@@ -102,7 +102,7 @@ class UsersController extends Controller
         $Users = UserBearer::where('role',$role)->get();
 
         if(!$Users)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $Users], 200);
     }
@@ -136,7 +136,7 @@ class UsersController extends Controller
         $Users = UserBearer::find($id);
         
         if(!$Users)
-        return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+        return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
             $validator = Validator::make($input, [
@@ -144,7 +144,7 @@ class UsersController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             if( isset($input['avatar']) ) {
@@ -168,7 +168,7 @@ class UsersController extends Controller
         $Users = UserBearer::where('phone_number',$input['phone_number'])->first();
 
         if(!$Users)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
 
             $validator = Validator::make($input, [
@@ -194,7 +194,7 @@ class UsersController extends Controller
         $Users = UserBearer::find($id);
 
         if(!$Users)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $Users->delete();
             return response()->json(['data'=>['status' => 'Users deleted !']], 200);
@@ -211,7 +211,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 400);
+            return response()->json(['error' => $validator->errors()], 400);
         }
         
 
@@ -225,7 +225,7 @@ class UsersController extends Controller
 
                 return response()->json($response, 200);
             }else{
-                return response()->json(['data'=>['status' => 'Password is incorrect !']], 401);
+                return response()->json(['error'=>['status' => 'Password is incorrect !']], 401);
             }
         }else{
             return response()->json(['data'=>['status' => 'User don\'t exists !']], 404);

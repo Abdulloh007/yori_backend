@@ -45,7 +45,7 @@ class SubcategoriesController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         $subcategories = Subcategories::create($input);
@@ -61,7 +61,7 @@ class SubcategoriesController extends Controller
         $subcategories = Subcategories::find($id);
 
         if(!$subcategories)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $subcategories], 200);
     }
@@ -74,7 +74,7 @@ class SubcategoriesController extends Controller
         $subcategories = Subcategories::where('categories_id', $id)->get();
 
         if(!$subcategories)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $subcategories], 200);
     }
@@ -84,7 +84,7 @@ class SubcategoriesController extends Controller
         $subcategories = Subcategories::where('tarif', $id)->get();
 
         if(!$subcategories)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
             return response()->json(['data' => $subcategories], 200);
     }
@@ -105,7 +105,7 @@ class SubcategoriesController extends Controller
         $subcategories = Subcategories::find($id);
 
         if(!$subcategories)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -115,7 +115,7 @@ class SubcategoriesController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             
@@ -133,7 +133,7 @@ class SubcategoriesController extends Controller
         $subcategories = Subcategories::find($id);
 
          if(!$subcategories)
-             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
          else{
              $subcategories->delete();
              return response()->json(['data'=>['status' => 'Subcategories deleted !']], 200);

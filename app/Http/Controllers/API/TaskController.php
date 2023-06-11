@@ -46,7 +46,7 @@ use Validator;
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => $validator->errors()], 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
 
         $task = Task::create($input);
@@ -63,7 +63,7 @@ use Validator;
          $task = Task::find($id);
 
          if(!$task)
-             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
          else
              return response()->json(['data' => $task], 200);
     }
@@ -84,7 +84,7 @@ use Validator;
         $task = Task::find($id);
 
         if(!$task)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $input = $request->all();
 
@@ -105,7 +105,7 @@ use Validator;
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['data' => $validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             $task->update($input);
@@ -122,7 +122,7 @@ use Validator;
         $task = Task::find($id);
 
         if(!$task)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $task->delete();
             return response()->json(['data'=>['status' => 'Task deleted !']], 200);
@@ -142,7 +142,7 @@ use Validator;
             $task = Task::where('category',$category)->where('subcategory',$subcategory)->get();
             
          if(!$task)
-             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
          else
              return response()->json(['data' => $task], 200);
     }
@@ -153,7 +153,7 @@ use Validator;
         $task = Task::where('customer',$customer)->get();
             
         if(!$task)
-             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
              return response()->json(['data' => $task], 200);
     }
@@ -164,7 +164,7 @@ use Validator;
         $task = Task::where('perfomer',$perfomer)->get();
             
         if(!$task)
-             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
+             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
              return response()->json(['data' => $task], 200);
     }
