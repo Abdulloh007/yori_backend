@@ -30,6 +30,7 @@ class Task extends Model
           'category',
           'subcategory',
           'private_description',
+          'provide_documents',
           'customer',
           'perfomer',
     ];

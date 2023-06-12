@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('status')->nullable();
             $table->integer('category');
             $table->integer('subcategory');
+            $table->boolean('provide_documents')->default(false);
             $table->text('private_description')->nullable();
             $table->integer('customer');
             $table->integer('perfomer')->nullable();

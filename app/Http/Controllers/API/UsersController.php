@@ -228,7 +228,7 @@ class UsersController extends Controller
                 return response()->json(['error'=>['status' => 'Password is incorrect !']], 401);
             }
         }else{
-            return response()->json(['data'=>['status' => 'User don\'t exists !']], 404);
+            return response()->json(['error'=>['status' => 'User don\'t exists !']], 404);
         }   
 
     }
