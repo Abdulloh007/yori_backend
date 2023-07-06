@@ -44,6 +44,16 @@ use Validator;
             'category' => 'required',
             'subcategory' => 'required',
         ]);
+        // dd($request->file())
+        if(isset($input['images'])){
+            $files = $request->file('images');
+            $imagePaths = [];
+            foreach ($files as $file) {
+                $imagePath = $file->store('task-image', 'public');    
+                array_push($imagePaths,$imagePath);
+            }
+            $input['images'] = implode(',',$imagePaths);
+        }
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);

@@ -33,6 +33,7 @@ class Task extends Model
           'provide_documents',
           'customer',
           'perfomer',
+          'images',
     ];
 
     protected $table="task";

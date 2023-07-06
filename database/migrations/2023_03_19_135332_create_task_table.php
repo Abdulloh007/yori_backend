@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->text('images')->nullable();
             $table->json('address')->nullable();
             $table->dateTime('date_of_start')->nullable();
             $table->dateTime('deadline')->nullable();

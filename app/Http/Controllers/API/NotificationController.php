@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notifications;
@@ -70,9 +70,29 @@ class NotificationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Notifications $notifications)
+    public function update(Request $request, int $id)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'status' => 'nullable',
+        ]);
+
+        if($validator->fails())
+            return response()->json(['error' => $validator->errors()], 400);
+
+        $messages = Notifications::find($id);
+
+        if(is_null($messages))
+            return response()->json(['error' => 'Messages not found'], 404);
+
+        $messages->update($input);
+
+        $response = [
+            'data' => $messages
+        ];
+
+        return response()->json($response, 200);
     }
 
     /**

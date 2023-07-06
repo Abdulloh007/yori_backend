@@ -98,6 +98,7 @@ Route::middleware('auth:api')->group( function () {
         
         Route::get('notifications/{user}', [NotificationController::class, 'show']);
         Route::post('notifications', [NotificationController::class, 'store']);
+        Route::post('notifications/{id}', [NotificationController::class, 'update']);
 
         Route::get('transactions', [TransactionsController::class, 'index']);
         Route::post('transactions', [TransactionsController::class, 'store']);
