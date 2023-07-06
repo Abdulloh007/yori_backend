@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('sender');
             $table->integer('chat_id');
-            $table->longText('message');
+            $table->longText('message')->nullable();
+            $table->longText('files')->nullable();
             $table->boolean('is_read')->default(false);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();

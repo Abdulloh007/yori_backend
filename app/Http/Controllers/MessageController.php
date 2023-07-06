@@ -25,13 +25,22 @@ class MessageController extends Controller
         $validator = Validator::make($request->all(), [
             'sender' => 'required|integer',
             'chat_id' => 'required|integer',
-            'message' => 'required|string',
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
 
         $input = $request->all();
+
+        if( isset($input['files']) ) {
+            $files = $request->file('files');
+            $imagePaths = [];
+            foreach ($files as $file) {
+                $imagePath = $file->store('chats', 'public');    
+                array_push($imagePaths,$imagePath);
+            }
+            $input['files'] = implode(',',$imagePaths);
+        }
 
         $message = Message::create($input);
     
