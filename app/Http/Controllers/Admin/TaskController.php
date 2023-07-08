@@ -67,6 +67,9 @@ class TaskController extends Controller
         if ($validator->fails()) {
             return redirect()->route('task');
         }
+        if(isset($input['provide_documents'])){
+            $input['provide_documents'] = (bool)$input['provide_documents'];
+        }
 
         $task = Task::create($input);
 

@@ -25,7 +25,7 @@
                     </td>
                     <td>
                       <div class="d-flex px-3">
-                          <img src="{{ asset('storage/'.$category->icon) }}" style="width:60px" alt="">
+                          <img src="{{ asset('/storage/'.$category->icon) }}" style="width:60px" alt="">
                       </div>
                     </td>
                     <td>

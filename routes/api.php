@@ -95,6 +95,7 @@ Route::middleware('auth:api')->group( function () {
 
         Route::get('message/{chat}', [MessageController::class, 'show']);
         Route::post('message',[MessageController::class, 'store']);
+        Route::post('message/{id}',[MessageController::class, 'update']);
         
         Route::get('notifications/{user}', [NotificationController::class, 'show']);
         Route::post('notifications', [NotificationController::class, 'store']);

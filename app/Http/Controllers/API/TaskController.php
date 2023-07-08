@@ -55,6 +55,13 @@ use Validator;
             $input['images'] = implode(',',$imagePaths);
         }
 
+        if(isset($input['date_of_start'])){
+            $input['date_of_start'] = date('Y-m-d h:i:s',strtotime($input['date_of_start']));
+        }
+        if(isset($input['deadline'])){
+            $input['deadline'] = date('Y-m-d h:i:s',strtotime($input['deadline']));
+        }
+        
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
