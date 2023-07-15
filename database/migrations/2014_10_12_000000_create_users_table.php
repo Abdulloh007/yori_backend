@@ -31,6 +31,7 @@ return new class extends Migration
             $table->json('tarif')->nullable();
             $table->string('sex')->nullable();
             $table->longText('bearer')->nullable();
+            $table->longText('push_noty')->nullable();
             $table->timestamps();
         });
     }

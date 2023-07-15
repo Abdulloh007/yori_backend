@@ -100,6 +100,7 @@ Route::middleware('auth:api')->group( function () {
         Route::get('notifications/{user}', [NotificationController::class, 'show']);
         Route::post('notifications', [NotificationController::class, 'store']);
         Route::post('notifications/{id}', [NotificationController::class, 'update']);
+        Route::post('push_notify', [NotificationController::class, 'notyPush']);
 
         Route::get('transactions', [TransactionsController::class, 'index']);
         Route::post('transactions', [TransactionsController::class, 'store']);

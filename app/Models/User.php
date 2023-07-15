@@ -36,6 +36,7 @@ class User extends Authenticatable
         'tarif',
         'sex',
         'bearer',
+        'push_noty'
   ];
 
     /**
