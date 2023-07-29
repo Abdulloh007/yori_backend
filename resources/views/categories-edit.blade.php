@@ -8,6 +8,10 @@
           <div class="mb-3">
             <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="name-addon" value="{{ $category->name }}">
           </div>
+          <label>Tj Name</label>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="tj_name" placeholder="Tj Name" aria-label="Tj Name" value="{{ $category->tj_name }}">
+          </div>
           <label>Icon</label>
           <div class="mb-3">
             <input type="file" class="form-control" name="icon">

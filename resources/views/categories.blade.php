@@ -11,6 +11,7 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tj Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Icon</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
@@ -21,6 +22,11 @@
                     <td>
                       <div class="d-flex px-3">
                           <h6 class="mb-0 text-sm">{{ $category->name }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex px-3">
+                          <h6 class="mb-0 text-sm">{{ $category->tj_name }}</h6>
                       </div>
                     </td>
                     <td>
