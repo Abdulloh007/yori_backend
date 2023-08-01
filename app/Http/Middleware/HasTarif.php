@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Response as Qwert;
 use App\Models\Subcategories;
 
 class HasTarif
@@ -32,23 +33,31 @@ class HasTarif
         $subcategory = $task->subcategory;
 
         $subcategories = Subcategories::find($subcategory);
+        $responses = Qwert::where('user', $user->id)->get();
         
-        foreach($tarif as $tariff){
-            $tarif_id = $tariff['tarif'];
-
-            $tarif_expire = $tariff['tarif_expire'];
-
-            if($tarif_id == $subcategories->tarif){
-                $date = date('Y-m-d');
-
-                $tarif_expire = date('Y-m-d', strtotime($tarif_expire)); 
-                if($date > $tarif_expire){
-                    return redirect()->route('tarif_expire');
+        if(!isset($user->tarif) && count($responses) < 3) {
+            return $next($request);
+        }else if(isset($user->tarif)) {
+            
+            foreach($tarif as $tariff){
+                $tarif_id = $tariff['tarif'];
+    
+                $tarif_expire = $tariff['tarif_expire'];
+    
+                if($tarif_id == $subcategories->tarif){
+                    $date = date('Y-m-d');
+    
+                    $tarif_expire = date('Y-m-d', strtotime($tarif_expire)); 
+                    if($date > $tarif_expire){
+                        return redirect()->route('tarif_expire');
+                    }
                 }
+    
             }
-
-        }
+        }else {
+            return redirect()->route('tarif_expire');
+        };
         
-        return $next($request);
+        // return $next($request);
     }
 }

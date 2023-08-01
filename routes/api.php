@@ -40,8 +40,8 @@ Route::post('users/phone', [UsersController::class,'recover']);
 //     echo $data;
 //  })->name('view-data');
 
-Route::get('accessdenied', function(){return response()->json(['data'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
-Route::get('hasnttarif', function(){return response()->json(['data'=>['status' => 'Your Tarif Expired ! ']],403);})->name('tarif_expire');
+Route::get('accessdenied', function(){return response()->json(['error'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
+Route::get('hasnttarif', function(){return response()->json(['error'=>['status' => 'Ваш тариф просрочен или у вас не осталось бесплатных попыток! ']],403);})->name('tarif_expire');
 Route::resource('categories', CategoriesController::class);
 Route::resource('subcategories', SubcategoriesController::class);
 Route::resource('task', TaskController::class);
