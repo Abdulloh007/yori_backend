@@ -37,14 +37,30 @@ class ChatController extends Controller
             $chat = Chat::where('user1', $request->user2)->where('user2', $request->user1)->first();
             if(is_null($chat)){
                 $chat = Chat::create($request->all());
-                return response()->json(['data'=>$chat]);
+                $user2 = UserBearer::find($request->user2);
+                return response()->json([
+                    'data'=>$chat,
+                    'collocutor' => $user2->name
+                ]);
             }else{
+                $user1 = UserBearer::find($chat->user1);
+                $user2 = UserBearer::find($chat->user2);
                 // return error
-                return response()->json(['error'=>'Chat already exists'], 401);
+                return response()->json([
+                    'error'=>'Чат уже существует!',
+                    'chat_id' => $chat->id,
+                    'collocutor' => $user1->id == $request->user1 ? $user2->name : $user1->name
+                ], 401);
             }
         }else{
+            $user1 = UserBearer::find($chat->user1);
+            $user2 = UserBearer::find($chat->user2);
             // return error
-            return response()->json(['error'=>'Chat already exists'], 401);
+            return response()->json([
+                'error'=>'Чат уже существует!',
+                'chat_id' => $chat->id,
+                'collocutor' => $user1->id == $request->user1 ? $user2->name : $user1->name
+            ], 401);
         }
 
     }

@@ -121,6 +121,24 @@ use Validator;
                 'performer' => 'nullable',
             ]);
 
+            if(isset($input['images_new'])){
+                $files = $request->file('images_new');
+                $imagePaths = [];
+                foreach ($files as $file) {
+                    $imagePath = $file->store('task-image', 'public');    
+                    array_push($imagePaths,$imagePath);
+                }
+                $input['images'] = implode(',',$imagePaths);
+            }
+    
+            if(isset($input['date_of_start'])){
+                $input['date_of_start'] = date('Y-m-d h:i:s',strtotime($input['date_of_start']));
+            }
+            if(isset($input['deadline'])){
+                $input['deadline'] = date('Y-m-d h:i:s',strtotime($input['deadline']));
+            }
+            
+
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 400);
             }

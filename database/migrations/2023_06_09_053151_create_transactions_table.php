@@ -21,6 +21,7 @@ return new class extends Migration
             // $table->emun('enrollment_status', array('accepted', 'declined', 'cancel')); // Статус зачисления
             $table->string('withdrawal_status', 15); // Статус списания
             $table->string('enrollment_status', 15); // Статус зачисления
+            $table->string('location', 50);
             $table->string('card_holder', 50);
             $table->string('credit_account');
             $table->decimal('commission', 5, 2);

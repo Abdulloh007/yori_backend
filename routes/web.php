@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\TarifController;
+use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Middleware\Admin\AccessControl;
@@ -167,6 +168,18 @@ Route::middleware([AccessControl::class])->group(function () {
     Route::get('/yoriadminpanel/main/notification',[NotificationController::class, 'index'])->name('notifications');
     Route::get('/yoriadminpanel/main/notification/delete/{id}',[NotificationController::class, 'destroy'])->name('notification-delete');
 
+
+    Route::get('/yoriadminpanel/main/transactions',[TransactionsController::class, 'index'])->name('transactions');
+
+    Route::get('/yoriadminpanel/main/transactions/add',[TransactionsController::class, 'create'])->name('transactions-create');
+    Route::post('/yoriadminpanel/main/transactions/store',[TransactionsController::class, 'store'])->name('transactions-store');
+
+    Route::get('/yoriadminpanel/main/transactions/show/{id}',[TransactionsController::class, 'show'])->name('transactions-show');
+
+    Route::get('/yoriadminpanel/main/transactions/edit/{id}',[TransactionsController::class, 'edit'])->name('transactions-edit');
+    Route::post('/yoriadminpanel/main/transactions/update/{id}',[TransactionsController::class, 'update'])->name('transactions-update');
+
+    Route::get('/yoriadminpanel/main/transactions/delete/{id}',[TransactionsController::class, 'destroy'])->name('transactions-delete')->middleware(AccessControl::class);
 
 
 });
