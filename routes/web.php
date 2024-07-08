@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('https://yori.tj');
+    return redirect('/tj');
 });
 
 Route::get('/404', function () {
