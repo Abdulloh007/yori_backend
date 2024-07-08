@@ -11,7 +11,7 @@
           <label>Tj Name</label>
           <div class="mb-3">
             <input type="text" class="form-control" name="tj_name" placeholder="Tj Name" aria-label="Tj Name" >
-          </div>
+          </div>          
           <label>Icon</label>
           <div class="mb-3">
             <input type="file" class="form-control" name="icon">

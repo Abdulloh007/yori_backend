@@ -49,11 +49,12 @@ class ResponseController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
-
+        
         $responses = Response::where('task',$input['task'])->where('user',$input['user'])->count();
         if($responses>=1){
             return response()->json(['error'=>"Вы уже отликнулись на это задание !"],409);
         }
+
         $response = Response::create($input);
 
         return response()->json(['data'=>$response],200);

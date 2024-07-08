@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Roles;
 use App\Models\Tarif;
 use App\Models\Transactions;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 use Hash;
@@ -20,6 +21,7 @@ class TransactionsController extends Controller
     {
         //
         $user = $request->session()->get('user');
+        
         if ($user === null) {
             return redirect()->route('home');
         }
@@ -27,12 +29,14 @@ class TransactionsController extends Controller
 
         if(isset($_GET['city']) && $_GET['city']!=0){
             $getCity = $_GET['city'];
-            $transactions = Transactions::where('city', $getCity)->get();
+            $transactions = Transactions::where('location', $getCity)->get();
         }else{
             $transactions = Transactions::all();
         }
         
-        return view('index',['page'=>'transactions','transactions'=>$transactions, 'cities'=>$city]);
+        $users = User::all();
+        
+        return view('index', ['page'=>'transactions','transactions'=>$transactions, 'cities'=>$city, 'users' => $users]);
 
     }
 
@@ -41,7 +45,12 @@ class TransactionsController extends Controller
      */
     public function create()
     {
-        return view('index',['page'=>'transactions-create']);
+      
+        $users = User::all();
+        
+        $city = City::all();
+
+        return view('index',['page'=>'transactions-create', 'city'=>$city, 'users' => $users]);
     }
 
     /**
@@ -49,7 +58,30 @@ class TransactionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+                'payment_date' => 'required',
+                'enrollment_date' => 'required',
+                'payment_amount' => 'required',
+                'credit_amount' => 'required',
+                'withdrawal_status' => 'required',
+                'enrollment_status' => 'required',
+                'location' => 'required',
+                'card_holder' => 'required',
+                'credit_account' => 'required',
+                'description' => 'nullable',
+        ]);
+
+        if ($validator->fails()) {
+            dd($validator->errors());
+            return redirect()->route('transactions');
+        }
+        
+
+        $task = Transactions::create($input);
+
+        return redirect()->route('transactions');
     }
 
     /**
@@ -80,10 +112,13 @@ class TransactionsController extends Controller
         $admin = $request->session()->get('user');
 
         $transaction = Transactions::find($id);
-
+        
+        $user = $request->session()->get('user');
+        $users = User::where('role','<',$user->role)->get();
+        
         $city = City::all();
 
-        return view('index',['page'=>'transactions-edit','transaction'=>$transaction, 'city'=>$city]);
+        return view('index',['page'=>'transactions-edit','transaction'=>$transaction, 'city'=>$city, 'users' => $users]);
     }
 
     /**
@@ -92,7 +127,7 @@ class TransactionsController extends Controller
     public function update(Request $request, int $id)
     {
           $transaction = Transactions::find($id);
-
+        
           if(!$transaction)
               return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
           else{
@@ -113,10 +148,10 @@ class TransactionsController extends Controller
   
                 if ($validator->fails()) {
                      return redirect()->route('transactions');
-                    dd($validator->errors());
                 }
 
-              $user->update($input);
+              $transaction->update($input);
+              
   
              return redirect()->route('transactions');
           }
@@ -128,7 +163,7 @@ class TransactionsController extends Controller
     public function destroy(int $id)
     {
 
-        $transaction = User::find($id);
+        $transaction = Transactions::find($id);
 
         if(!$transaction)
             return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);

@@ -41,11 +41,14 @@ Route::post('users/phone', [UsersController::class,'recover']);
 //  })->name('view-data');
 
 Route::get('accessdenied', function(){return response()->json(['error'=>['status' => 'Access Denied ! ']],403);})->name('accessdenied');
-Route::get('hasnttarif', function(){return response()->json(['error'=>['status' => 'Ваш тариф просрочен или у вас не осталось бесплатных попыток! ']],403);})->name('tarif_expire');
+Route::get('hasnttarif/{status}', function($status){return response()->json(['error'=> $status] ,403);})->name('tarif_expire');
+Route::get('hasnttarif', function(){return response()->json(['error'=> 'Ваш тариф просрочен или у вас не осталось бесплатных попыток!'] ,402);})->name('tarif_expire2');
 Route::resource('categories', CategoriesController::class);
 Route::resource('subcategories', SubcategoriesController::class);
 Route::resource('task', TaskController::class);
-
+Route::get('cities', [CityController::class, 'index']);
+Route::get('review/user/{id}', [ReviewController::class,'showbyuser']);
+Route::resource('tarif', TarifController::class);
 
 Route::middleware('auth:api')->group( function () {
 
@@ -65,7 +68,7 @@ Route::middleware('auth:api')->group( function () {
         Route::resource('review', ReviewController::class);
         Route::post('review/{id}', [ReviewController::class,'update']);
         Route::get('review/task/{id}', [ReviewController::class,'showbytask']);
-        Route::get('review/user/{id}', [ReviewController::class,'showbyuser']);
+
 
         
         Route::post('task/{id}', [TaskController::class,'update']);
@@ -80,7 +83,7 @@ Route::middleware('auth:api')->group( function () {
         Route::get('response/task/{id}', [ResponseController::class,'showbytask']);
         Route::get('response/user/{id}', [ResponseController::class,'showbyuser']);
 
-        Route::resource('tarif', TarifController::class);
+        
         Route::post('tarif/{id}', [TarifController::class,'update']);
 
         Route::resource('workexamples', WorkExamplesController::class);
@@ -106,7 +109,7 @@ Route::middleware('auth:api')->group( function () {
         Route::post('transactions', [TransactionsController::class, 'store']);
         Route::get('transactions/{id}', [TransactionsController::class, 'show']);
 
-        Route::get('cities', [CityController::class, 'index']);
+
         Route::post('cities', [CityController::class, 'store']);
         Route::get('cities/{id}', [CityController::class, 'show']);
     });

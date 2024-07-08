@@ -13,7 +13,7 @@
           <a class="nav-link @if($page=='dashboard') active @endif" href="{{ route('index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>shop </title>
+                <title>Dashboard </title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -33,7 +33,7 @@
           <a class="nav-link @if($page=='task') active @endif" href="{{ route('task') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>shop </title>
+                <title>Задания </title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -46,14 +46,14 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Task</span>
+            <span class="nav-link-text ms-1">Задания</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link @if($page=='users') active @endif" href="{{ route('users') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>customer-support</title>
+                <title>Пользователи</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -67,14 +67,14 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Users</span>
+            <span class="nav-link-text ms-1">Пользователи</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link @if($page=='chat') active @endif" href="{{ route('chat') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>customer-support</title>
+                <title>Чаты</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -88,14 +88,14 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Chats</span>
+            <span class="nav-link-text ms-1">Чаты</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link @if($page=='categories') active @endif" href="{{ route('categories') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Категории</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -108,7 +108,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Categories</span>
+            <span class="nav-link-text ms-1">Категории</span>
           </a>
         </li>
         
@@ -116,7 +116,7 @@
           <a class="nav-link @if($page=='city') active @endif" href="{{ route('city') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Города</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -129,7 +129,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">City</span>
+            <span class="nav-link-text ms-1">Города</span>
           </a>
         </li>
 
@@ -137,7 +137,7 @@
           <a class="nav-link @if($page=='subcategories') active @endif" href="{{ route('subcategories') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Подкатегории</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -150,14 +150,14 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Subcategories</span>
+            <span class="nav-link-text ms-1">Подкатегории</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link @if($page=='roles') active @endif" href="{{ route('roles') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>customer-support</title>
+                <title>Роли</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -171,7 +171,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Roles</span>
+            <span class="nav-link-text ms-1">Роли</span>
           </a>
         </li>
         
@@ -179,7 +179,7 @@
           <a class="nav-link @if($page=='tarif') active @endif" href="{{ route('tarif') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Тарифы</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -192,7 +192,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Tarif</span>
+            <span class="nav-link-text ms-1">Тарифы</span>
           </a>
         </li>
 
@@ -200,7 +200,7 @@
           <a class="nav-link @if($page=='transactions') active @endif" href="{{ route('transactions') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>transactions</title>
+                <title>Транзакции</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -213,7 +213,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Transactions</span>
+            <span class="nav-link-text ms-1">Транзакции</span>
           </a>
         </li>
 
@@ -221,7 +221,7 @@
           <a class="nav-link @if($page=='response') active @endif" href="{{ route('response') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Отклики</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -234,7 +234,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Responses</span>
+            <span class="nav-link-text ms-1">Отклики</span>
           </a>
         </li>
 
@@ -242,7 +242,7 @@
           <a class="nav-link @if($page=='review') active @endif" href="{{ route('review') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Отзывы</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -255,7 +255,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Review</span>
+            <span class="nav-link-text ms-1">Отзывы</span>
           </a>
         </li>
 
@@ -263,7 +263,7 @@
           <a class="nav-link @if($page=='notifications') active @endif" href="{{ route('notifications') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Уведомления</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -276,7 +276,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Notifications</span>
+            <span class="nav-link-text ms-1">Уведомления</span>
           </a>
         </li>
 
@@ -284,7 +284,7 @@
           <a class="nav-link @if(isset($status) && $status==0 && $page='permission') active @endif" href="{{ route('permission') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>document</title>
+                <title>Доступы пользователей</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -297,7 +297,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Users Permissions</span>
+            <span class="nav-link-text ms-1">Доступы пользователей</span>
           </a>
         </li>
 
@@ -319,12 +319,12 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Admin Permissions</span>
+            <span class="nav-link-text ms-1">Доступы сотрудников</span>
           </a>
         </li>
 
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Настройки Пользователя</h6>
         </li>
         <li class="nav-item">
           @php
@@ -333,7 +333,7 @@
           <a class="nav-link @if($page=='profile') active @endif" href="{{ route('profile', $admin->id, 1) }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>customer-support</title>
+                <title>Профиль</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -347,7 +347,7 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Profile</span>
+            <span class="nav-link-text ms-1">Профиль</span>
           </a>
         </li>
       </ul>

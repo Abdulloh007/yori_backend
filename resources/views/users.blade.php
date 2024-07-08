@@ -43,7 +43,7 @@
                           </td>
                           <td>
                             <div class="d-flex px-3">
-                                <h6 class="mb-0 text-sm">{{ $user->city }}</h6>
+                                <h6 class="mb-0 text-sm">{{ $cities->find($user->city)->name }}</h6>
                             </div>
                           </td>
                           

@@ -14,15 +14,27 @@
           <div class="mb-3">
             <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="Description">{{ $task->description }}</textarea>
           </div>
+          
+          <label>Status</label>
+          <div class="mb-3">
+            <select name="status" id="" class="form-control">
+              <option selected disabled>Select Status</option>
+              <option value="0" {{ $task->status == 0 ? "selected" : "" }}>На рассмотрении</option>
+              <option value="1" {{ $task->status == 1 ? "selected" : "" }}>Одобрено</option>
+              <option value="2" {{ $task->status == 2 ? "selected" : "" }}>Завершено/Выполнено</option>
+              <option value="3" {{ $task->status == 3 ? "selected" : "" }}>Завершено/Не выполнено</option>
+              
+            </select>
+          </div>
 
           <label>Date of Start</label>
           <div class="mb-3">
-            <input type="date" class="form-control" name="date_of_start" placeholder="Date of Start" aria-label="Name" aria-describedby="name-addon" value="{{ $task->date_of_start }}">
+            <input type="datetime-local" class="form-control" name="date_of_start" placeholder="Date of Start" aria-label="Name" aria-describedby="name-addon" value="{{ $task->date_of_start }}">
           </div>
           
           <label>Deadline</label>
           <div class="mb-3">
-            <input type="date" class="form-control" name="deadline" placeholder="Deadline" aria-label="Name" aria-describedby="name-addon" value="{{ $task->deadline }}">
+            <input type="datetime-local" class="form-control" name="deadline" placeholder="Deadline" aria-label="Name" aria-describedby="name-addon" value="{{ $task->deadline }}">
           </div>
 
           <label>Private Description</label>

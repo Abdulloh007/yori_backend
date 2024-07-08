@@ -22,6 +22,7 @@ class Review extends Model
           'from',
           'to',
           'task_id',
+          'rate',
           'text',
     ];
 

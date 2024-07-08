@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('from')->nullable();
             $table->string('to')->nullable();
             $table->string('task_id')->nullable();
+            $table->integer('rate')->nullable();
             $table->text('text')->nullable();
             $table->timestamps();
         });
     }
-   
+
     /**
      * Reverse the migrations.
      */

@@ -1,8 +1,11 @@
     <div class="row">
       <div class="col-12">
         <div class="card mb-4">
-          <div class="card-header pb-0">
+          <div class="card-header d-flex pb-0 w-100 align-items-center justify-content-between ">
             <h6>Task</h6>
+            @if ($task->status < 1)
+                <a class="btn btn-primary" href="{{ route('task-approve', $task->id) }}">Одобрить</a>
+            @endif
           </div>
           <div class="card-body p-5">
             <div class="d-flex justify-space-between">
@@ -10,15 +13,22 @@
                 <div class="w-40">
                   <p><b>Title:</b> &nbsp; {{ $task->title }} </p>
                   <p><b>Description:</b> &nbsp; {{ $task->description }} </p>
+                  <p><b>Status:</b> &nbsp; {{ $task->status == 0 ? 'На рассмотрении' : ($task->status == 1 ? 'Одобрено' : ($task->status == 2 ? 'Завершено/Выполнено' : ($task->status == 3 ? 'Завершено/Не выполнено' : '')))}} </p>
                   @php
                     if(!is_null($task->address))
                       $taddress = json_decode($task->address);
                     else
                       $taddress = [];
                   @endphp
-                  <p><b>Address:</b> &nbsp; 
-                  {{ $taddress->address }}
+                  <p><b>Address:</b> 
+                  @forelse ($taddress as $idx => $item)
+                      <p>{{ $idx + 1 }}. {{ $item->address }}</p>
+                  @empty
+                  @endforelse
+                  
                   </p>
+                  
+                  
                   <p><b>Date of start:</b> &nbsp; {{ $task->date_of_start }} </p>
                   <p><b>Deadline:</b> &nbsp; {{ $task->deadline }} </p>
                   <p><b>Budget:</b> &nbsp; {{ $task->budget }} </p>

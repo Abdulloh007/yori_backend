@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User as UserAuth;
 use App\Models\UserBearer;
+use App\Models\City;
 use Illuminate\Http\Request;
 use Validator;
 use Hash;
@@ -58,9 +59,9 @@ class UsersController extends Controller
         if(isset($input['password'])){
             $input['password'] = bcrypt($input['password']);  
         }
-
-        if(isset($input['tarif_expire'])){
-            $input['tarif_expire'] = date('Y-m-d',strtotime($input['tarif_expire']));  
+        
+        if(isset($input['tarif'])){
+            $input['tarif'] == "\"\"" ? $input['tarif'] = "[]" : $input['tarif'];
         }
 
         $user = UserAuth::where('phone_number', $input['phone_number'])->first();
@@ -87,7 +88,10 @@ class UsersController extends Controller
     {
         //
         $Users = UserBearer::find($id);
-
+        // dd($Users);
+        // $city = City::find($Users->city);
+        // $Users->city = $city->name;
+        
         if(!$Users)
             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
@@ -100,7 +104,9 @@ class UsersController extends Controller
     {
         //
         $Users = UserBearer::where('role',$role)->get();
-
+        // foreach($Users as $item) {
+        //     $item->city = City::find($item->city)->name;
+        // }
         if(!$Users)
             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
@@ -157,7 +163,7 @@ class UsersController extends Controller
             }
 
             $Users->update($input);
-
+            
             return response()->json(['data' => $Users], 200);
         }
     }

@@ -2,9 +2,9 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header d-flex pb-0 w-100 align-items-center justify-content-between">
-            <h6>Users Table</h6>
+            <h6>Transactions Table</h6>
             <form method="GET" action="" class="w-md-20 d-flex justify-content-around align-items-center">
-                <select name="role" id="" class="form-control mx-2">
+                <select name="city" id="" class="form-control mx-2">
                     <option value="0">All</option>
                     @forelse ($cities as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -18,7 +18,7 @@
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
               <table class="table align-items-center justify-content-center mb-0">
-                {{-- <a href="{{ route('transactions-create') }}" class="text-white font-weight-bold text-xs mx-3 px-3 py-1" style="background: var(--bs-success);border-radius: 5px;">Add</a> --}}
+                <a href="{{ route('transactions-create') }}" class="text-white font-weight-bold text-xs mx-3 px-3 py-1" style="background: var(--bs-success);border-radius: 5px;">Add</a>
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Дата оплаты</th>
@@ -69,14 +69,14 @@
                           </td>
                           
                           <td>
-                            <div class="d-flex px-3">
-                                <h6 class="mb-0 text-sm">{{ $transaction->card_holder }}</h6>
-                            </div>
+                            <a href="{{ route('users-show',$users->find($transaction->card_holder)->id) }}" class="d-flex px-3">
+                                <h6 class="mb-0 text-sm">{{ $users->find($transaction->card_holder)->name }}</h6>
+                            </a>
                           </td>
 
                           <td>
                             <div class="d-flex px-3">
-                                <h6 class="mb-0 text-sm">{{ $transaction->location }}</h6>
+                                <h6 class="mb-0 text-sm">{{ $cities->find($transaction->location)->name  }}</h6>
                             </div>
                           </td>
                           

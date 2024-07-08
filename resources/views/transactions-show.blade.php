@@ -23,13 +23,13 @@
               </div>
             </div>
           
-              <a href="{{ route('transactions-edit',$user->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
+              <a href="{{ route('transactions-edit',$transaction->id) }}" class="text-secondary font-weight-bold text-xs px-3 py-1" style="background: var(--bs-gray-200);border-radius: 5px;">Edit</a>
               @php
                   $user = Session::get('user');
                   $role = $user->role;
               @endphp
                 @if (!$role>2)
-                  <a href="{{ route('transactions-delete',$user->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
+                  <a href="{{ route('transactions-delete',$transaction->id) }}" class="text-white font-weight-bold text-xs px-3 py-1" style="background: var(--bs-red);border-radius: 5px;">Delete</a>
                 @endif
             </div>
           </div>

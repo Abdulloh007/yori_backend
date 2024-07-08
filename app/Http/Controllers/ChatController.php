@@ -37,11 +37,7 @@ class ChatController extends Controller
             $chat = Chat::where('user1', $request->user2)->where('user2', $request->user1)->first();
             if(is_null($chat)){
                 $chat = Chat::create($request->all());
-                $user2 = UserBearer::find($request->user2);
-                return response()->json([
-                    'data'=>$chat,
-                    'collocutor' => $user2->name
-                ]);
+                return response()->json(['data'=>$chat]);
             }else{
                 $user1 = UserBearer::find($chat->user1);
                 $user2 = UserBearer::find($chat->user2);

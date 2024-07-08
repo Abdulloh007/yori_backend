@@ -103,7 +103,7 @@ class NotificationController extends Controller
     {
         //
     }
-
+    
     public function notyPush(Request $request)
     {
 
@@ -139,7 +139,7 @@ class NotificationController extends Controller
         $response = curl_exec($curl);
 
         curl_close($curl);
-        echo $response;
+        return $response;
 
     }
 }

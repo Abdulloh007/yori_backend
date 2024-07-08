@@ -15,7 +15,10 @@ use Validator;
     public function index()
     {
         $task = Task::all();
-
+        $task = $task->filter(function($item) {
+            return (is_null($item->perfomer) && $item->status == 1); 
+        })->values();
+        // dd($task);
         $response=['data'=>$task];
 
         if(!$task->isEmpty())
@@ -44,7 +47,7 @@ use Validator;
             'category' => 'required',
             'subcategory' => 'required',
         ]);
-        // dd($request->file())
+        
         if(isset($input['images'])){
             $files = $request->file('images');
             $imagePaths = [];
@@ -61,10 +64,16 @@ use Validator;
         if(isset($input['deadline'])){
             $input['deadline'] = date('Y-m-d h:i:s',strtotime($input['deadline']));
         }
-        
+
+
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
+        
+        if(isset($input['provide_documents'])){
+            $input['provide_documents'] = (bool)$input['provide_documents'];
+        }
+
 
         $task = Task::create($input);
 
@@ -120,7 +129,7 @@ use Validator;
                 'customer' => 'nullable',
                 'performer' => 'nullable',
             ]);
-
+            
             if(isset($input['images_new'])){
                 $files = $request->file('images_new');
                 $imagePaths = [];
@@ -138,6 +147,7 @@ use Validator;
                 $input['deadline'] = date('Y-m-d h:i:s',strtotime($input['deadline']));
             }
             
+
 
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 400);

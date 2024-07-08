@@ -28,7 +28,7 @@ class TaskController extends Controller
             }
         }
 
-        return view('index',['page'=>'task','tasks'=>$tasks]);
+        return view('index',['page'=>'task','tasks'=>$tasks->reverse()]);
         
     }
 
@@ -66,9 +66,6 @@ class TaskController extends Controller
 
         if ($validator->fails()) {
             return redirect()->route('task');
-        }
-        if(isset($input['provide_documents'])){
-            $input['provide_documents'] = (bool)$input['provide_documents'];
         }
 
         $task = Task::create($input);
@@ -120,6 +117,14 @@ class TaskController extends Controller
 
         return view('index',['page'=>'task-edit','task'=>$task, 'category'=>$category, 'subcategory'=>$subcategory]);
     }
+    
+    public function approve(int $task)
+    {
+
+        $task = Task::find($task);
+        $task->update(['status' => 1]);
+        return redirect()->route('task');
+    }
 
     /**
      * Update the specified resource in storage.
@@ -137,8 +142,8 @@ class TaskController extends Controller
                 'title' => 'required',
                 'description' => 'required',
                 'date_of_start' => 'required',
-                'deadline' => 'required',
-                'private_description' => 'required',
+                'deadline' => 'nullable',
+                'private_description' => 'nullable',
                 'budget' => 'required',
                 'price' => 'required',
                 'payment_type' => 'required',
@@ -147,8 +152,8 @@ class TaskController extends Controller
             ]);
 
               if ($validator->fails()) {
+                  dd($validator->errors());
                    return redirect()->route('task');
-                  //dd($validator->errors());
               }
             
             $task->update($input);

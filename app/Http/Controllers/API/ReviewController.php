@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\UserBearer;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -48,9 +49,12 @@ class ReviewController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
-
+        $user = UserBearer::find($input["to"]);
+        
         $review = Review::create($input);
-
+        //dd(($user->rating + $input["rate"]));
+        $user->update(["rating" => ($user->rating + $input["rate"])]);
+        
         return response()->json(['data'=>$review],200);
     }
 
@@ -85,12 +89,16 @@ class ReviewController extends Controller
     */
     public function showbyuser(int $id)
     {
-        $review = Review::where('to',$id)->get();
-
-        if(!$review)
+        $reviews = Review::where('to',$id)->get();
+        
+        foreach($reviews as $item) {
+            $user = UserBearer::find($item->from);
+            $item->from = $user;
+        }
+        if(!$reviews)
             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
-            return response()->json(['data' => $review], 200);
+            return response()->json(['data' => $reviews], 200);
     }
 
     /**

@@ -35,7 +35,7 @@ class HasTarif
         $subcategories = Subcategories::find($subcategory);
         $responses = Qwert::where('user', $user->id)->get();
         
-        if(!isset($user->tarif) && count($responses) < 3) {
+        if(count($responses) < 3) {
             return $next($request);
         }else if(isset($user->tarif)) {
             
@@ -49,15 +49,20 @@ class HasTarif
     
                     $tarif_expire = date('Y-m-d', strtotime($tarif_expire)); 
                     if($date > $tarif_expire){
-                        return redirect()->route('tarif_expire');
+                        return redirect()->route('tarif_expire2');
+                    } else {
+                        return $next($request);
                     }
+                } else if($tarif_id == 888) {
+                    return $next($request);
+                } else {
+                    return redirect()->route('tarif_expire', ['status' => "Задание не доступно! Подключите подходящий тариф!"]);
                 }
     
             }
         }else {
-            return redirect()->route('tarif_expire');
+            return redirect()->route('tarif_expire2');
         };
-        
-        // return $next($request);
+        return redirect()->route('tarif_expire2');
     }
 }

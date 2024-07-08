@@ -64,8 +64,9 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Message $message)
+    public function update(Request $request, int $id)
     {
+        
         $message = Message::find($id);
 
         $input = $request->all();
@@ -75,6 +76,7 @@ class MessageController extends Controller
 
         return response()->json(['data'=>$message], 200);
 
+        
     }
 
     /**

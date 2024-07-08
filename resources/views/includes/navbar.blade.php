@@ -21,7 +21,7 @@
           <li class="nav-item d-flex align-items-center">
             <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
               <i class="fa fa-user me-sm-1"></i>
-              <span class="d-sm-inline d-none">Sign In</span>
+              <span class="d-sm-inline d-none">Вход</span>
             </a>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -51,11 +51,11 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="text-sm font-weight-normal mb-1">
-                        <span class="font-weight-bold">New message</span> from Laur
+                        <span class="font-weight-bold">Новое сообщение</span> от Laur
                       </h6>
                       <p class="text-xs text-secondary mb-0 ">
                         <i class="fa fa-clock me-1"></i>
-                        13 minutes ago
+                        13 минут назад
                       </p>
                     </div>
                   </div>
@@ -69,11 +69,11 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="text-sm font-weight-normal mb-1">
-                        <span class="font-weight-bold">New album</span> by Travis Scott
+                        <span class="font-weight-bold">Новый альбом</span> by Travis Scott
                       </h6>
                       <p class="text-xs text-secondary mb-0 ">
                         <i class="fa fa-clock me-1"></i>
-                        1 day
+                        1 день
                       </p>
                     </div>
                   </div>
@@ -99,11 +99,11 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="text-sm font-weight-normal mb-1">
-                        Payment successfully completed
+                        Оплата успешно завершена
                       </h6>
                       <p class="text-xs text-secondary mb-0 ">
                         <i class="fa fa-clock me-1"></i>
-                        2 days
+                        2 дня
                       </p>
                     </div>
                   </div>

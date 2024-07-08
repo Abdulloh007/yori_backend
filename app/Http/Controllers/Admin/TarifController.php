@@ -37,7 +37,7 @@ class TarifController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'nullable',
             'price' => 'required',
         ]);
 

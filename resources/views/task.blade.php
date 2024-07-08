@@ -10,6 +10,7 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date of start</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deadline</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">budget</th>
@@ -22,6 +23,11 @@
                     <td>
                       <div class="d-flex px-3">
                           <h6 class="mb-0 text-sm">{{ $task->title }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex px-3">
+                          <h6 class="mb-0 text-sm">{{ $task->status == 0 ? 'На рассмотрении' : ($task->status == 1 ? 'Одобрено' : ($task->status == 2 ? 'Завершено/Выполнено' : ($task->status == 3 ? 'Завершено/Не выполнено' : '')))}}</h6>
                       </div>
                     </td>
                     <td>

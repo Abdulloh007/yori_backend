@@ -9,7 +9,7 @@ use Validator;
 
 class CategoriesController extends Controller
 {
-    /**                     
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -43,7 +43,7 @@ class CategoriesController extends Controller
         if ($validator->fails()) {
             return redirect()->route('categories');
         }
-
+        
         if( isset($input['icon']) ) {
             $image_path = $request->file('icon')->store('icons', 'public');
             $input['icon'] = $image_path;
@@ -86,29 +86,29 @@ class CategoriesController extends Controller
           if(!$categories)
               return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
           else{
-            
-            $input = $request->all();
+              $input = $request->all();
   
-            $validator = Validator::make($input, [
-                'name' => 'required',
-                'tj_name' => 'required',
-            ]);
+              $validator = Validator::make($input, [
+                  'name' => 'required',
+                  'tj_name' => 'required',
+              ]);
   
-            if ($validator->fails()) {
-                return redirect()->route('categories');
-            }
+              if ($validator->fails()) {
+                    return redirect()->route('categories');
+              }
   
+                
             if( isset($input['icon']) ) {
                 $image_path = $request->file('icon')->store('icons', 'public');
                 $input['icon'] = $image_path;
             }
-            if(is_null($input['icon'])){
+            if(!isset($input['icon'])){
                 $input['icon'] = $input['prev_icon'];
             }
 
-            $categories->update($input);
+              $categories->update($input);
   
-            return redirect()->route('categories');
+             return redirect()->route('categories');
           }
     }
 

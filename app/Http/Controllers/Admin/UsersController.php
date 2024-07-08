@@ -24,6 +24,7 @@ class UsersController extends Controller
             return redirect()->route('home');
         }
         $roles = Roles::all();
+        $cities = City::all();
 
         if(isset($_GET['role']) && $_GET['role']!=0){
             $getrole = $_GET['role'];
@@ -32,7 +33,7 @@ class UsersController extends Controller
             $users = User::where('role','<',$user->role)->get();
         }
         
-        return view('index',['page'=>'users','users'=>$users, 'roles'=>$roles]);
+        return view('index',['page'=>'users','users'=>$users, 'roles'=>$roles, 'cities' => $cities]);
 
     }
 
@@ -74,7 +75,7 @@ class UsersController extends Controller
             $tariffs=[];
             foreach($tarif as $item){
                 $tarif = Tarif::find($item->tarif);
-                array_push($tariffs,$tarif->name);
+                is_null($tarif) ? '' : array_push($tariffs,$tarif->name);
             }
             $user->tarif = $tariffs;
         }else{

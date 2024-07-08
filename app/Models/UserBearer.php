@@ -38,6 +38,7 @@ class UserBearer extends Authenticatable
         'tarif',
         'sex',
         'bearer',
+        'push_noty',
   ];
 
     /**

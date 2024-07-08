@@ -21,6 +21,7 @@ class SubcategoriesController extends Controller
         foreach($categories as $subcategories){
             $category = Categories::find($subcategories->categories_id);
             $tarif = Tarif::find($subcategories->tarif);
+            //dd($category->name);
             $subcategories['category_name'] = $category->name;
             $subcategories['tarif_name'] = $tarif->name;
         }

@@ -26,6 +26,8 @@ class Transactions extends Model
         'card_holder',
         'credit_account',
         'commission',
+        'location',
+        'commission',
         'brand',
         'bank',
         'description'

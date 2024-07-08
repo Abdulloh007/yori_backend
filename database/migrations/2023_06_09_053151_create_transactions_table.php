@@ -23,10 +23,10 @@ return new class extends Migration
             $table->string('enrollment_status', 15); // Статус зачисления
             $table->string('location', 50);
             $table->string('card_holder', 50);
-            $table->string('credit_account');
-            $table->decimal('commission', 5, 2);
-            $table->string('brand', 50);
-            $table->string('bank', 50);
+            $table->string('credit_account')->nullable();
+            $table->decimal('commission', 5, 2)->nullable();
+            $table->string('brand', 50)->nullable();
+            $table->string('bank', 50)->nullable();
             $table->text('description')->nullable();
 
             $table->timestamps();

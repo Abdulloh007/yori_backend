@@ -40,10 +40,12 @@ class TransactionsController extends Controller
             'enrollment_status' => 'required',
             'card_holder' => 'required',
             'credit_account' => 'required',
-            'commission' => 'required',
-            'brand' => 'required',
-            'bank' => 'required',
+            'location' => 'required',
+            'commission' => 'nullable',
+            'brand' => 'nullable',
+            'bank' => 'nullable',
         ]);
+
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
