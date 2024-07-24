@@ -17,15 +17,6 @@
                 @endforeach
             </select>
           </div>
-          <label>Tariff</label>
-          <div class="mb-3">
-            <select name="tarif" id="" class="form-control">
-                <option value="" >Select Tariff</option>
-                @foreach ($tarif as $tariff)
-                  <option value="{{$tariff->id}}">{{ $tariff->name }}</option>
-                @endforeach
-            </select>
-          </div>
           <div class="text-center">
             <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Add subcategory</button>
           </div>

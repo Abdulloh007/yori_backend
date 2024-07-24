@@ -21,10 +21,9 @@ class HasTarif
     {
 
         $token = $request->bearerToken();
-        
-        $user = User::where('bearer',$token)->first();
-        
-        $tarif = json_decode($user->tarif,true);
+        $userID = $request->user()->id;
+
+        $user = User::find($userID);
 
         $task_id = $request['task'];
 
@@ -37,29 +36,10 @@ class HasTarif
         
         if(count($responses) < 3) {
             return $next($request);
-        }else if(isset($user->tarif)) {
-            
-            foreach($tarif as $tariff){
-                $tarif_id = $tariff['tarif'];
-    
-                $tarif_expire = $tariff['tarif_expire'];
-    
-                if($tarif_id == $subcategories->tarif){
-                    $date = date('Y-m-d');
-    
-                    $tarif_expire = date('Y-m-d', strtotime($tarif_expire)); 
-                    if($date > $tarif_expire){
-                        return redirect()->route('tarif_expire2');
-                    } else {
-                        return $next($request);
-                    }
-                } else if($tarif_id == 888) {
-                    return $next($request);
-                } else {
-                    return redirect()->route('tarif_expire', ['status' => "Задание не доступно! Подключите подходящий тариф!"]);
-                }
-    
-            }
+        }else if($user->balance > 0 && $user->balance > ($task->budget * 0.1)) {
+            // if() {
+                return $next($request);
+            // }
         }else {
             return redirect()->route('tarif_expire2');
         };

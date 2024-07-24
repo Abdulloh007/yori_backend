@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\UserBearer;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class ChatController extends Controller
 {

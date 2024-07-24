@@ -57,13 +57,6 @@ class PermissionSeeder extends Seeder
         ]);
         
         DB::table('permission')->insert([
-            'route' => 'tarif',
-            'get' => '1,2,5',
-            'post' => '1,2,5',
-            'delete' => '1,2,5',
-        ]);
-
-        DB::table('permission')->insert([
             'route' => 'workexamples',
             'get' => '1,2,5',
             'post' => '1,2,5',
@@ -178,48 +171,6 @@ class PermissionSeeder extends Seeder
             'delete' => '',
             'status' => 1,
         ]);
-
-
-        DB::table('permission')->insert([
-            'route' => 'tarif-create',
-            'get' => '4,5',
-            'post' => '',
-            'delete' => '',
-            'status' => 1,
-        ]);
-        
-        DB::table('permission')->insert([
-            'route' => 'tarif-store',
-            'get' => '',
-            'post' => '4,5',
-            'delete' => '',
-            'status' => 1,
-        ]);
-
-        DB::table('permission')->insert([
-            'route' => 'tarif-update',
-            'get' => '',
-            'post' => '4,5',
-            'delete' => '',
-            'status' => 1,
-        ]);
-
-        DB::table('permission')->insert([
-            'route' => 'tarif-edit',
-            'get' => '3,4,5',
-            'post' => '5',
-            'delete' => '5',
-            'status' => 1,
-        ]);
-        
-        DB::table('permission')->insert([
-            'route' => 'tarif-delete',
-            'get' => '5',
-            'post' => '',
-            'delete' => '',
-            'status' => 1,
-        ]);
-
 
         DB::table('permission')->insert([
             'route' => 'roles-create',

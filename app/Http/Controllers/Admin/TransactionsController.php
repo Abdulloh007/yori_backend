@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Roles;
-use App\Models\Tarif;
 use App\Models\Transactions;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Validator;
 use Hash;
+use Illuminate\Support\Facades\Validator;
 
 class TransactionsController extends Controller
 {
@@ -21,23 +20,22 @@ class TransactionsController extends Controller
     {
         //
         $user = $request->session()->get('user');
-        
+
         if ($user === null) {
             return redirect()->route('home');
         }
         $city = City::all();
 
-        if(isset($_GET['city']) && $_GET['city']!=0){
+        if (isset($_GET['city']) && $_GET['city'] != 0) {
             $getCity = $_GET['city'];
             $transactions = Transactions::where('location', $getCity)->get();
-        }else{
+        } else {
             $transactions = Transactions::all();
         }
-        
-        $users = User::all();
-        
-        return view('index', ['page'=>'transactions','transactions'=>$transactions, 'cities'=>$city, 'users' => $users]);
 
+        $users = User::all();
+
+        return view('index', ['page' => 'transactions', 'transactions' => $transactions, 'cities' => $city, 'users' => $users]);
     }
 
     /**
@@ -45,12 +43,12 @@ class TransactionsController extends Controller
      */
     public function create()
     {
-      
+
         $users = User::all();
-        
+
         $city = City::all();
 
-        return view('index',['page'=>'transactions-create', 'city'=>$city, 'users' => $users]);
+        return view('index', ['page' => 'transactions-create', 'city' => $city, 'users' => $users]);
     }
 
     /**
@@ -61,23 +59,23 @@ class TransactionsController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($request->all(), [
-                'payment_date' => 'required',
-                'enrollment_date' => 'required',
-                'payment_amount' => 'required',
-                'credit_amount' => 'required',
-                'withdrawal_status' => 'required',
-                'enrollment_status' => 'required',
-                'location' => 'required',
-                'card_holder' => 'required',
-                'credit_account' => 'required',
-                'description' => 'nullable',
+            'payment_date' => 'required',
+            'enrollment_date' => 'required',
+            'payment_amount' => 'required',
+            'credit_amount' => 'required',
+            'withdrawal_status' => 'required',
+            'enrollment_status' => 'required',
+            'location' => 'required',
+            'card_holder' => 'required',
+            'credit_account' => 'required',
+            'description' => 'nullable',
         ]);
 
         if ($validator->fails()) {
             dd($validator->errors());
             return redirect()->route('transactions');
         }
-        
+
 
         $task = Transactions::create($input);
 
@@ -87,7 +85,7 @@ class TransactionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id, int $admin=0)
+    public function show(int $id, int $admin = 0)
     {
         // view users-show return user by id
 
@@ -95,30 +93,30 @@ class TransactionsController extends Controller
 
         $city = City::find($transaction->location);
 
-        if($city)
+        if ($city)
             $transaction->city = $city->name;
 
-        if($admin==0)
-            return view('index',['page'=>'transactions-show','transaction'=>$transaction]);
+        if ($admin == 0)
+            return view('index', ['page' => 'transactions-show', 'transaction' => $transaction]);
         else
-            return view('index',['page'=>'transactions-show','transaction'=>$transaction,'admin'=>1]);
+            return view('index', ['page' => 'transactions-show', 'transaction' => $transaction, 'admin' => 1]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request,int $id)
+    public function edit(Request $request, int $id)
     {
         $admin = $request->session()->get('user');
 
         $transaction = Transactions::find($id);
-        
+
         $user = $request->session()->get('user');
-        $users = User::where('role','<',$user->role)->get();
-        
+        $users = User::where('role', '<', $user->role)->get();
+
         $city = City::all();
 
-        return view('index',['page'=>'transactions-edit','transaction'=>$transaction, 'city'=>$city, 'users' => $users]);
+        return view('index', ['page' => 'transactions-edit', 'transaction' => $transaction, 'city' => $city, 'users' => $users]);
     }
 
     /**
@@ -126,14 +124,14 @@ class TransactionsController extends Controller
      */
     public function update(Request $request, int $id)
     {
-          $transaction = Transactions::find($id);
-        
-          if(!$transaction)
-              return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
-          else{
-              $input = $request->all();
-  
-              $validator = Validator::make($input, [
+        $transaction = Transactions::find($id);
+
+        if (!$transaction)
+            return response()->json(['data' => ['status' => 'Data don\'t exists !']], 404);
+        else {
+            $input = $request->all();
+
+            $validator = Validator::make($input, [
                 'payment_date' => 'required',
                 'enrollment_date' => 'required',
                 'payment_amount' => 'required',
@@ -144,17 +142,17 @@ class TransactionsController extends Controller
                 'card_holder' => 'nullable',
                 'credit_account' => 'required',
                 'description' => 'nullable',
-              ]);
-  
-                if ($validator->fails()) {
-                     return redirect()->route('transactions');
-                }
+            ]);
 
-              $transaction->update($input);
-              
-  
-             return redirect()->route('transactions');
-          }
+            if ($validator->fails()) {
+                return redirect()->route('transactions');
+            }
+
+            $transaction->update($input);
+
+
+            return redirect()->route('transactions');
+        }
     }
 
     /**
@@ -165,12 +163,11 @@ class TransactionsController extends Controller
 
         $transaction = Transactions::find($id);
 
-        if(!$transaction)
-            return response()->json(['data'=>['status' => 'Data don\'t exists !']], 404);
-        else{
+        if (!$transaction)
+            return response()->json(['data' => ['status' => 'Data don\'t exists !']], 404);
+        else {
             $transaction->delete();
             return redirect()->route('transactions');
         }
-
     }
 }

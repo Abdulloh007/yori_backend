@@ -31,17 +31,6 @@
             </div>
             
             <div class="my-5 mx-3">
-              <p>Tariffs:</p>
-              <ul>
-                @forelse ($user->tarif as $tarif)
-                  <li>{{ $tarif }}</li>    
-                @empty
-                  <li>Hasn't Tariffs</li>    
-                @endforelse
-              </ul>
-            </div>
-
-            <div class="my-5 mx-3">
               <p>Video About:</p>
               <a href="{{ $user->video_about}}" class="text-primary" target="blank">{{ $user->video_about }}</a>              
             </div>

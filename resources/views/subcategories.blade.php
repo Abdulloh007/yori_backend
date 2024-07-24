@@ -12,7 +12,6 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tarif</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
@@ -27,11 +26,6 @@
                     <td>
                       <div class="d-flex px-3">
                           <h6 class="mb-0 text-sm">{{ $subcategory->category_name }}</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-3">
-                          <h6 class="mb-0 text-sm">{{ $subcategory->tarif_name }}</h6>
                       </div>
                     </td>
                     <td>

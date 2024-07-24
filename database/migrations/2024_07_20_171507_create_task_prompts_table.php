@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('review', function (Blueprint $table) {
+        Schema::create('task_prompts', function (Blueprint $table) {
             $table->id();
-            $table->string('from')->nullable();
-            $table->string('to')->nullable();
-            $table->string('task_id')->nullable();
-            $table->integer('rate')->nullable();
-            $table->text('text')->nullable();
+            $table->string('prompt');
+            $table->string('prompt_tj')->nullable();
+            $table->integer('subcategory_id');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('review');
+        Schema::dropIfExists('task_prompts');
     }
 };

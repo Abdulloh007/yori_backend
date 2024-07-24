@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\ResponseController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\RolesController;
-use App\Http\Controllers\Admin\TarifController;
 use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UsersController;
@@ -81,18 +80,6 @@ Route::middleware([AccessControl::class])->group(function () {
     Route::post('/yoriadminpanel/main/roles/update/{id}', [RolesController::class, 'update'])->name('roles-update');
 
     Route::get('/yoriadminpanel/main/roles/delete/{id}', [RolesController::class, 'destroy'])->name('roles-delete')->middleware(AccessControl::class);
-
-
-    Route::get('/yoriadminpanel/main/tarif', [TarifController::class, 'index'])->name('tarif');
-
-    Route::get('/yoriadminpanel/main/tarif/add', [TarifController::class, 'create'])->name('tarif-create');
-    Route::post('/yoriadminpanel/main/tarif/store', [TarifController::class, 'store'])->name('tarif-store');
-
-    Route::get('/yoriadminpanel/main/tarif/edit/{id}', [TarifController::class, 'edit'])->name('tarif-edit');
-    Route::post('/yoriadminpanel/main/tarif/update/{id}', [TarifController::class, 'update'])->name('tarif-update');
-
-    Route::get('/yoriadminpanel/main/tarif/delete/{id}', [TarifController::class, 'destroy'])->name('tarif-delete')->middleware(AccessControl::class);
-
 
     Route::get('/yoriadminpanel/main/users', [UsersController::class, 'index'])->name('users');
 

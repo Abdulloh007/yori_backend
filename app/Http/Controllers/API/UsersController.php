@@ -7,8 +7,8 @@ use App\Models\User as UserAuth;
 use App\Models\UserBearer;
 use App\Models\City;
 use Illuminate\Http\Request;
-use Validator;
-use Hash;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -60,18 +60,14 @@ class UsersController extends Controller
             $input['password'] = bcrypt($input['password']);  
         }
         
-        if(isset($input['tarif'])){
-            $input['tarif'] == "\"\"" ? $input['tarif'] = "[]" : $input['tarif'];
-        }
-
         $user = UserAuth::where('phone_number', $input['phone_number'])->first();
         
         if(is_null($user)){
             $User = UserAuth::create($input);
-            $User->bearer = $User->createToken('Yori')->accessToken;
             $User->save();
             $response = [
-                'data' => $User
+                'data' => $User,
+                'token' => $User->createToken('Yori')->accessToken
             ];
             return response()->json(['data'=>$response],200);
         }else{
@@ -87,10 +83,10 @@ class UsersController extends Controller
     public function show(int $id)
     {
         //
-        $Users = UserBearer::find($id);
-        // dd($Users);
+        $Users = UserBearer::with('city')->find($id);
+        
         // $city = City::find($Users->city);
-        // $Users->city = $city->name;
+        // $Users['city'] = $city;
         
         if(!$Users)
             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
@@ -110,7 +106,7 @@ class UsersController extends Controller
         if(!$Users)
             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else
-            return response()->json(['data' => $Users], 200);
+            return response()->json(['data' => $Users, 'quantity' => $Users->count()], 200);
     }
 
     // public function byphone(string $phone)
@@ -160,6 +156,10 @@ class UsersController extends Controller
             
             if(isset($input['password'])){
                 $input['password'] = bcrypt($input['password']);  
+            }
+            
+            if(isset($input['subcategories'])){
+                $Users->subcategories()->sync($input['subcategories']);  
             }
 
             $Users->update($input);
@@ -226,7 +226,8 @@ class UsersController extends Controller
         if(!is_null($user)){
             if(Hash::check($input['password'], $user->password)){
                 $response = [
-                    'data' => $user
+                    'data' => $user,
+                    'token' => $user->createToken('Yori')->accessToken
                 ];
 
                 return response()->json($response, 200);
@@ -236,6 +237,11 @@ class UsersController extends Controller
         }else{
             return response()->json(['error'=>['status' => 'User don\'t exists !']], 404);
         }   
+
+    }
+
+
+    public function getPerformersCount(Request $req) {
 
     }
 }

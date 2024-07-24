@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Subcategories;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class SubcategoriesController extends Controller
 {
@@ -72,16 +72,6 @@ class SubcategoriesController extends Controller
     public function showbycategories(int $id)
     {
         $subcategories = Subcategories::where('categories_id', $id)->get();
-
-        if (!$subcategories)
-            return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);
-        else
-            return response()->json(['data' => $subcategories], 200);
-    }
-
-    public function showbytarifs(int $id)
-    {
-        $subcategories = Subcategories::where('tarif', $id)->get();
 
         if (!$subcategories)
             return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);

@@ -22,22 +22,21 @@ class User extends Authenticatable
         'surname',
         'avatar',
         'age',
-        'city',
+        'city_id',
         'rating',
         'bio',
         'video_about',
         'status',
         'role',
         'balance',
+        'freeze_balance',
         'email',
         'date_of_birth',
         'phone_number',
         'password',
-        'tarif',
         'sex',
-        'bearer',
         'push_noty'
-  ];
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -53,6 +52,13 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-    ];
+    protected $casts = [];
+
+    public function subcategories() {
+        return $this->belongsToMany(Subcategories::class, 'user_subs', 'user_id', 'subcategory_id');
+    }
+
+    public function city() {
+        return $this->belongsTo(City::class, 'city_id');
+    }
 }

@@ -17,21 +17,21 @@ return new class extends Migration
             $table->string('surname')->nullable();
             $table->text('avatar')->nullable();
             $table->integer('age')->nullable();
-            $table->string('city')->nullable();
+            $table->integer('city_id')->nullable();
             $table->integer('rating')->default(0);
             $table->text('bio')->nullable();
             $table->text('video_about')->nullable();
             $table->integer('status')->default(0);
             $table->integer('role');
             $table->decimal('balance',20,2)->nullable();
+            $table->decimal('freeze_balance',20,2)->nullable();
             $table->string('email')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('phone_number');
             $table->string('password')->nullable();
-            $table->json('tarif')->nullable();
             $table->string('sex')->nullable();
-            $table->longText('bearer')->nullable();
             $table->longText('push_noty')->nullable();
+            $table->boolean('identified')->default(false);
             $table->timestamps();
         });
     }

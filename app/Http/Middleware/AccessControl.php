@@ -19,28 +19,28 @@ class AccessControl
      */
     public function handle(Request $request, Closure $next)
     {
-        $token = $request->bearerToken();
+
         $route = $request->route()->uri();
         $method = $request->method();
         $response = $next($request);
-        
+
         $strroute = $route;
 
         // return redirect()->route('view-data', dd($request->route()->uri()));
 
 
 
-
-        $user = User::where('bearer',$token)->first();
+        $userId = $request->user()->id;
+        $user = User::find($userId);
 
         $route = explode('/', $strroute);
-        $permission = Permission::where('route',$route[1])->first();
-       
-        
+        $permission = Permission::where('route', $route[1])->first();
+
+
 
         if ($user && $permission) {
             $role = $user->role;
-            switch($method){
+            switch ($method) {
                 case 'GET':
                     $var = $permission->get;
                     break;
@@ -48,19 +48,18 @@ class AccessControl
                     $var = $permission->post;
                     break;
                 case 'DELETE':
-                    $var = $permission->delete;    
+                    $var = $permission->delete;
                     break;
             }
-            
-            $var = explode(',',$var);
-            if(!in_array($role,$var)){
+
+            $var = explode(',', $var);
+            if (!in_array($role, $var)) {
                 return redirect()->route('accessdenied');
             }
-            
-        }else{
+        } else {
             return redirect()->route('accessdenied');
         }
-        
+
         return $response;
     }
 }

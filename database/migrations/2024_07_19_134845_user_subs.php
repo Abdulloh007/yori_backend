@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarif', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->decimal('price',30,2);
+        Schema::create('user_subs', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('subcategory_id');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarif');
+        Schema::drop('user_subs');
     }
 };

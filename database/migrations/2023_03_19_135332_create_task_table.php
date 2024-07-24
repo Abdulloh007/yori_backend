@@ -32,7 +32,8 @@ return new class extends Migration
             $table->integer('customer');
             $table->integer('perfomer')->nullable();
             $table->timestamps();
-
+            $table->softDeletes();
+            
         });
     }
 
