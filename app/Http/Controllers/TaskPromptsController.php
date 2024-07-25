@@ -26,8 +26,8 @@ class TaskPromptsController extends Controller
 
     public function search(Request $request, $text)
     {
-        $prompts = TaskPrompts::where('prompt', 'LIKE', '%{'.$text.'}%')->get();
-
+        $prompts = TaskPrompts::with(['subcategory'])->where('prompt', 'LIKE', "%{$text}%")->get();
+        
         return response()->json(['data' => $prompts], 200);
     }
 
