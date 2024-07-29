@@ -5,9 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
-    class TaskController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +15,16 @@ use Validator;
     public function index()
     {
         $task = Task::all();
-        $task = $task->filter(function($item) {
-            return (is_null($item->perfomer) && $item->status == 1); 
+        $task = $task->filter(function ($item) {
+            return (is_null($item->perfomer) && $item->status == 1);
         })->values();
         // dd($task);
-        $response=['data'=>$task];
+        $response = ['data' => $task];
 
-        if(!$task->isEmpty())
+        if (!$task->isEmpty())
             return response()->json($response);
         else
-            return response()->json(['status'=>'Empty']);
+            return response()->json(['status' => 'Empty']);
     }
 
     /**
@@ -32,7 +32,6 @@ use Validator;
      */
     public function create()
     {
-        
     }
 
     /**
@@ -47,37 +46,37 @@ use Validator;
             'category' => 'required',
             'subcategory' => 'required',
         ]);
-        
-        if(isset($input['images'])){
+
+        if (isset($input['images'])) {
             $files = $request->file('images');
             $imagePaths = [];
             foreach ($files as $file) {
-                $imagePath = $file->store('task-image', 'public');    
-                array_push($imagePaths,$imagePath);
+                $imagePath = $file->store('task-image', 'public');
+                array_push($imagePaths, $imagePath);
             }
-            $input['images'] = implode(',',$imagePaths);
+            $input['images'] = implode(',', $imagePaths);
         }
 
-        if(isset($input['date_of_start'])){
-            $input['date_of_start'] = date('Y-m-d h:i:s',strtotime($input['date_of_start']));
+        if (isset($input['date_of_start'])) {
+            $input['date_of_start'] = date('Y-m-d h:i:s', strtotime($input['date_of_start']));
         }
-        if(isset($input['deadline'])){
-            $input['deadline'] = date('Y-m-d h:i:s',strtotime($input['deadline']));
+        if (isset($input['deadline'])) {
+            $input['deadline'] = date('Y-m-d h:i:s', strtotime($input['deadline']));
         }
 
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
-        
-        if(isset($input['provide_documents'])){
+
+        if (isset($input['provide_documents'])) {
             $input['provide_documents'] = (bool)$input['provide_documents'];
         }
 
 
         $task = Task::create($input);
 
-        return response()->json(['data'=>$task],200);
+        return response()->json(['data' => $task], 200);
     }
 
     /**
@@ -85,13 +84,13 @@ use Validator;
      */
     public function show(int $id)
     {
-         //
-         $task = Task::find($id);
+        //
+        $task = Task::find($id);
 
-         if(!$task)
-             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
-         else
-             return response()->json(['data' => $task], 200);
+        if (!$task)
+            return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);
+        else
+            return response()->json(['data' => $task], 200);
     }
 
     /**
@@ -109,9 +108,9 @@ use Validator;
     {
         $task = Task::find($id);
 
-        if(!$task)
-            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
-        else{
+        if (!$task)
+            return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);
+        else {
             $input = $request->all();
 
             $validator = Validator::make($input, [
@@ -129,24 +128,24 @@ use Validator;
                 'customer' => 'nullable',
                 'performer' => 'nullable',
             ]);
-            
-            if(isset($input['images_new'])){
+
+            if (isset($input['images_new'])) {
                 $files = $request->file('images_new');
                 $imagePaths = [];
                 foreach ($files as $file) {
-                    $imagePath = $file->store('task-image', 'public');    
-                    array_push($imagePaths,$imagePath);
+                    $imagePath = $file->store('task-image', 'public');
+                    array_push($imagePaths, $imagePath);
                 }
-                $input['images'] = implode(',',$imagePaths);
+                $input['images'] = implode(',', $imagePaths);
             }
-    
-            if(isset($input['date_of_start'])){
-                $input['date_of_start'] = date('Y-m-d h:i:s',strtotime($input['date_of_start']));
+
+            if (isset($input['date_of_start'])) {
+                $input['date_of_start'] = date('Y-m-d h:i:s', strtotime($input['date_of_start']));
             }
-            if(isset($input['deadline'])){
-                $input['deadline'] = date('Y-m-d h:i:s',strtotime($input['deadline']));
+            if (isset($input['deadline'])) {
+                $input['deadline'] = date('Y-m-d h:i:s', strtotime($input['deadline']));
             }
-            
+
 
 
             if ($validator->fails()) {
@@ -166,52 +165,51 @@ use Validator;
     {
         $task = Task::find($id);
 
-        if(!$task)
-            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
-        else{
+        if (!$task)
+            return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);
+        else {
             $task->delete();
-            return response()->json(['data'=>['status' => 'Task deleted !']], 200);
+            return response()->json(['data' => ['status' => 'Task deleted !']], 200);
         }
     }
 
 
-     /**
+    /**
      * Display the specified resource.
      */
-    public function showbycategories(int $category, int $subcategory=-1)
+    public function showbycategories(int $category, int $subcategory = -1)
     {
-         //
-         if($subcategory==-1)
-            $task = Task::where('category',$category)->get();
+        //
+        if ($subcategory == -1)
+            $task = Task::where('category', $category)->get();
         else
-            $task = Task::where('category',$category)->where('subcategory',$subcategory)->get();
-            
-         if(!$task)
-             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
-         else
-             return response()->json(['data' => $task], 200);
+            $task = Task::where('category', $category)->where('subcategory', $subcategory)->get();
+
+        if (!$task)
+            return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);
+        else
+            return response()->json(['data' => $task], 200);
     }
 
     public function showbycustomer(int $customer)
     {
-        
-        $task = Task::where('customer',$customer)->get();
-            
-        if(!$task)
-             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
+
+        $task = Task::where('customer', $customer)->get();
+
+        if (!$task)
+            return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);
         else
-             return response()->json(['data' => $task], 200);
+            return response()->json(['data' => $task], 200);
     }
 
     public function showbyperfomer(int $perfomer)
     {
-        
-        $task = Task::where('perfomer',$perfomer)->get();
-            
-        if(!$task)
-             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
-        else
-             return response()->json(['data' => $task], 200);
-    }
 
+        $task = Task::where('perfomer', $perfomer)->get();
+
+        if (!$task)
+            return response()->json(['error' => ['status' => 'Data don\'t exists !']], 404);
+        else
+            return response()->json(['data' => $task], 200);
+    }
 }

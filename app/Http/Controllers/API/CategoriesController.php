@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categories;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
 {

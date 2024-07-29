@@ -33,6 +33,7 @@ return new class extends Migration
             $table->longText('push_noty')->nullable();
             $table->boolean('identified')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

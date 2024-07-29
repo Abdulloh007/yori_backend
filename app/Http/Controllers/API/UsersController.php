@@ -194,15 +194,27 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(Request $req, int $id)
     {
         //
-        $Users = UserBearer::find($id);
+        $Users = $req->user();
 
         if(!$Users)
             return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
         else{
             $Users->delete();
+            return response()->json(['data'=>['status' => 'Users deleted !']], 200);
+        }
+    }
+    
+    public function deleteMe(Request $req)
+    {
+        $user = $req->user();
+
+        if(!$user)
+            return response()->json(['error'=>['status' => 'Data don\'t exists !']], 404);
+        else{
+            $user->delete();
             return response()->json(['data'=>['status' => 'Users deleted !']], 200);
         }
     }
